@@ -29,7 +29,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -149,7 +149,6 @@
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="Hierarchy.cpp" />
-    <ClCompile Include="IETThread.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
     <ClCompile Include="ImGui\imgui_draw.cpp" />
     <ClCompile Include="ImGui\imgui_impl_dx11.cpp" />
@@ -168,7 +167,6 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="MeshManager.cpp" />
-    <ClCompile Include="ModelLoaderThread.cpp" />
     <ClCompile Include="ObjectParentingScreen.cpp" />
     <ClCompile Include="ObjectProperty.cpp" />
     <ClCompile Include="pch.cpp" />
@@ -216,7 +214,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GraphicsEngine.h" />
-    <ClInclude Include="IETThread.h" />
     <ClInclude Include="imfilebrowser.h" />
     <ClInclude Include="Hierarchy.h" />
     <ClInclude Include="ImGui\imconfig.h" />
@@ -248,7 +245,6 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="MeshManager.h" />
-    <ClInclude Include="ModelLoaderThread.h" />
     <ClInclude Include="ObjectParentingScreen.h" />
     <ClInclude Include="ObjectProperty.h" />
     <ClInclude Include="pch.h" />

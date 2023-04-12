@@ -312,8 +312,7 @@ void GameObjectManager::CreateTeapot()
 {
     GameObject* obj = GameObject::Instantiate(NAME_TEAPOT);
 
-    GraphicsEngine::get()->getMeshManager()->SetMesh(L"Assets\\Meshes\\teapot.obj", "teapot");
-    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->meshMap["teapot"];
+    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\teapot.obj");
     //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\brick.png");
 
     MeshComponent* meshComponent = new MeshComponent();
