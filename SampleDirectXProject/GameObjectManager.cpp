@@ -14,6 +14,15 @@
 #include <random>
 
 GameObjectManager* GameObjectManager::instance = nullptr;
+static const std::string NAME_TEAPOT = "Teapot";
+const std::string NAME_CUBE = "Cube";
+const std::string NAME_PLANE = "Plane";
+const std::string NAME_SPHERE = "Sphere";
+const std::string NAME_CAPSULE = "Capsule";
+const std::string NAME_CYLINDER = "Cylinder";
+const std::string NAME_BUNNY = "Bunny";
+const std::string NAME_ARMADILLO = "Armadillo";
+const std::string NAME_LUCY = "Lucy";
 
 GameObjectManager::GameObjectManager()
 {
@@ -27,6 +36,17 @@ GameObjectManager::GameObjectManager()
 void GameObjectManager::Initialize()
 {
     instance = new GameObjectManager();
+    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\teapot.obj", NAME_TEAPOT);
+    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\cube.obj", NAME_CUBE);
+    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\plane.obj", NAME_PLANE);
+    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\sphere.obj", NAME_SPHERE);
+    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\capsule.obj", NAME_CAPSULE);
+    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\cylinder.obj", NAME_CYLINDER);
+    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\bunny.obj", NAME_BUNNY);
+    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\armadillo.obj", NAME_ARMADILLO);
+    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\statue.obj", NAME_LUCY);
+
+
 }
 
 GameObjectManager* GameObjectManager::Get()
@@ -70,7 +90,9 @@ GameObject* GameObjectManager::CreateCube()
         //transform->SetPosition({ rand, 5, rand });
     }
 
-    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\cube.obj");
+    //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\cube.obj");
+    Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_CUBE];
+
     //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\brick.png");
     
     if (mesh)
@@ -147,7 +169,9 @@ GameObject* GameObjectManager::CreatePlane()
         //transform->SetScale({ 5, 0.1f, 5 });
     }
 
-    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\plane.obj");
+    //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\plane.obj");
+    Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_PLANE];
+
     //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\brick.png");
     
 
@@ -187,7 +211,9 @@ GameObject* GameObjectManager::CreateSphere()
 {
     GameObject* obj = GameObject::Instantiate(NAME_SPHERE);
     obj->SetObjectType(PrimitiveType::SPHERE);
-    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\sphere.obj");
+    //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\sphere.obj");
+    Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_SPHERE];
+
     //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\grass.png");
 
     MeshComponent* meshComponent = new MeshComponent();
@@ -219,7 +245,9 @@ GameObject* GameObjectManager::CreateCapsule()
 {
     GameObject* obj = GameObject::Instantiate(NAME_CAPSULE);
     obj->SetObjectType(PrimitiveType::CAPSULE);
-    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\capsule.obj");
+    //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\capsule.obj");
+    Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_CAPSULE];
+
     //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\grass.png");
 
     MeshComponent* meshComponent = new MeshComponent();
@@ -251,7 +279,9 @@ GameObject* GameObjectManager::CreateCylinder()
 {
     GameObject* obj = GameObject::Instantiate(NAME_CYLINDER);
 
-    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\cylinder.obj");
+    //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\cylinder.obj");
+    Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_CYLINDER];
+
     //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\grass.png");
 
     MeshComponent* meshComponent = new MeshComponent();
@@ -312,9 +342,9 @@ void GameObjectManager::CreateTeapot()
 {
     GameObject* obj = GameObject::Instantiate(NAME_TEAPOT);
 
-    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\teapot.obj");
+    //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\teapot.obj");
     //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\brick.png");
-
+    Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_TEAPOT];
     MeshComponent* meshComponent = new MeshComponent();
     obj->AttachComponent(meshComponent);
     meshComponent->SetMesh(mesh);
@@ -342,7 +372,9 @@ void GameObjectManager::CreateBunny()
 {
     GameObject* obj = GameObject::Instantiate(NAME_BUNNY);
 
-    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\bunny.obj");
+    //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\bunny.obj");
+    Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_BUNNY];
+
     //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\ground.png");
 
     MeshComponent* meshComponent = new MeshComponent();
@@ -372,7 +404,9 @@ void GameObjectManager::CreateArmadillo()
 {
     GameObject* obj = GameObject::Instantiate(NAME_ARMADILLO);
 
-    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\armadillo.obj");
+    //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\armadillo.obj");
+    Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_ARMADILLO];
+
     //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\grass.png");
 
     MeshComponent* meshComponent = new MeshComponent();
@@ -402,7 +436,9 @@ void GameObjectManager::CreateLucy()
 {
     GameObject* obj = GameObject::Instantiate(NAME_LUCY);
 
-    Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\statue.obj");
+    //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\statue.obj");
+    Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_LUCY];
+
 
     MeshComponent* meshComponent = new MeshComponent();
     obj->AttachComponent(meshComponent);

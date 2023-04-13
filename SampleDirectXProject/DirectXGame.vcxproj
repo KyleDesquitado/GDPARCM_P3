@@ -96,7 +96,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <PreprocessorDefinitions>NOMINMAX;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -141,6 +141,8 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
+    <ClCompile Include="DebugManager.cpp" />
+    <ClCompile Include="DebugScreen.cpp" />
     <ClCompile Include="DeviceContext.cpp" />
     <ClCompile Include="EditorAction.cpp" />
     <ClCompile Include="EngineBackend.cpp" />
@@ -149,6 +151,9 @@
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="Hierarchy.cpp" />
+    <ClCompile Include="IETSempaphore.cpp" />
+    <ClCompile Include="IETThread.cpp" />
+    <ClCompile Include="IExecutionEvent.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
     <ClCompile Include="ImGui\imgui_draw.cpp" />
     <ClCompile Include="ImGui\imgui_impl_dx11.cpp" />
@@ -157,6 +162,7 @@
     <ClCompile Include="ImGui\imgui_widgets.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="InputSystem.cpp" />
+    <ClCompile Include="IWorkerAction.cpp" />
     <ClCompile Include="Libs\jsoncpp-1.9.5\src\lib_json\json_reader.cpp" />
     <ClCompile Include="Libs\jsoncpp-1.9.5\src\lib_json\json_value.cpp" />
     <ClCompile Include="Libs\jsoncpp-1.9.5\src\lib_json\json_writer.cpp" />
@@ -166,6 +172,7 @@
     <ClCompile Include="MenuBar.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshComponent.cpp" />
+    <ClCompile Include="MeshLoaderThread.cpp" />
     <ClCompile Include="MeshManager.cpp" />
     <ClCompile Include="ObjectParentingScreen.cpp" />
     <ClCompile Include="ObjectProperty.cpp" />
@@ -173,6 +180,7 @@
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="PlaybackScreen.cpp" />
+    <ClCompile Include="PoolWorkerThread.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
@@ -186,6 +194,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureComponent.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UIScreen.cpp" />
@@ -204,6 +213,8 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="CreditsScreen.h" />
+    <ClInclude Include="DebugManager.h" />
+    <ClInclude Include="DebugScreen.h" />
     <ClInclude Include="DeviceContext.h" />
     <ClInclude Include="EditorAction.h" />
     <ClInclude Include="EngineBackend.h" />
@@ -214,6 +225,9 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GraphicsEngine.h" />
+    <ClInclude Include="IETSempaphore.h" />
+    <ClInclude Include="IETThread.h" />
+    <ClInclude Include="IExecutionEvent.h" />
     <ClInclude Include="imfilebrowser.h" />
     <ClInclude Include="Hierarchy.h" />
     <ClInclude Include="ImGui\imconfig.h" />
@@ -228,6 +242,7 @@
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="InputListener.h" />
     <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="IWorkerAction.h" />
     <ClInclude Include="Libs\jsoncpp-1.9.5\include\json\allocator.h" />
     <ClInclude Include="Libs\jsoncpp-1.9.5\include\json\assertions.h" />
     <ClInclude Include="Libs\jsoncpp-1.9.5\include\json\config.h" />
@@ -244,6 +259,7 @@
     <ClInclude Include="MenuBar.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshComponent.h" />
+    <ClInclude Include="MeshLoaderThread.h" />
     <ClInclude Include="MeshManager.h" />
     <ClInclude Include="ObjectParentingScreen.h" />
     <ClInclude Include="ObjectProperty.h" />
@@ -252,6 +268,7 @@
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="PlaybackScreen.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="PoolWorkerThread.h" />
     <ClInclude Include="Prerequisites.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Resource.h" />
@@ -266,6 +283,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureComponent.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIScreen.h" />

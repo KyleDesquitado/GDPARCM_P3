@@ -67,16 +67,7 @@ public:
 	PhysicsWorld* GetPhysicsWorld();
 	PhysicsCommon* GetPhysicsCommon();
 
-public:
-	const std::string NAME_CUBE = "Cube";
-	const std::string NAME_PLANE = "Plane";
-	const std::string NAME_SPHERE = "Sphere";
-	const std::string NAME_CAPSULE = "Capsule";
-	const std::string NAME_CYLINDER = "Cylinder";
-	const std::string NAME_TEAPOT = "Teapot";
-	const std::string NAME_BUNNY = "Bunny";
-	const std::string NAME_ARMADILLO = "Armadillo";
-	const std::string NAME_LUCY = "Lucy";
+	
 private:
 	PhysicsCommon* physicsCommon;
 	PhysicsWorld* physicsWorld;
