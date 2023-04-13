@@ -11,6 +11,7 @@
 #include "VertexMesh.h"
 
 #include <iostream>
+#include <cstddef>
 
 Mesh::Mesh(const wchar_t* full_path) : Resource(full_path)
 {
@@ -49,6 +50,8 @@ Mesh::Mesh(const wchar_t* full_path) : Resource(full_path)
 		for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++)
 		{
 			unsigned char num_face_verts = shapes[s].mesh.num_face_vertices[f];
+
+			std::cout <<"Count: "<< f << std::endl;
 
 			for (unsigned char v = 0; v < num_face_verts; v++)
 			{

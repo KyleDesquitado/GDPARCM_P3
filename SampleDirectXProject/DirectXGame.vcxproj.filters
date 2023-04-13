@@ -73,11 +73,11 @@
     <Filter Include="GameEngine\GraphicsEngine\MeshManager">
       <UniqueIdentifier>{35edbb52-52bc-400d-974a-945e3373c82a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\NewFilter1">
-      <UniqueIdentifier>{1514a874-cdf9-41e0-bdf1-a67f8d0eaab1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\JSON">
       <UniqueIdentifier>{6a2ec5b0-eb43-48aa-a4d3-d8fe6e5b6a38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Thread">
+      <UniqueIdentifier>{0ccc3be6-7ae1-454a-91b1-abbc4c238696}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
