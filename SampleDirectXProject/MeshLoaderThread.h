@@ -5,8 +5,7 @@
 #include <string>
 #include <unordered_map>
 
-class MeshLoaderThread :
-    public IWorkerAction, public IExecutionEvent
+class MeshLoaderThread : public IWorkerAction, public IExecutionEvent
 {
 public:
     MeshLoaderThread(const wchar_t* file_path, std::string _name, std::unordered_map<std::string, Mesh* >* _meshMap);
