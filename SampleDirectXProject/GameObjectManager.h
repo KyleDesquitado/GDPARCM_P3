@@ -39,6 +39,8 @@ public:
 	GameObject* CreateCapsule();
 	GameObject* CreateCylinder();
 
+	void CreateScene1();
+
 public:
 	GameObject* FindObjectByName(std::string name);
 	void ApplyEditorAction(class EditorAction* action);

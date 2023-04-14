@@ -46,6 +46,7 @@ void GameObjectManager::Initialize()
     GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\armadillo.obj", NAME_ARMADILLO);
     GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\statue.obj", NAME_LUCY);
 
+    GraphicsEngine::get()->getMeshManager()->LoadMeshesFromFile("Assets/Meshes/Objects/", "Scene1");
 
 }
 
@@ -309,6 +310,44 @@ GameObject* GameObjectManager::CreateCylinder()
     return obj;
 }
 
+//GameObject* GameObjectManager::CreateScene1()
+//{
+//    for (int i = 0; i < GraphicsEngine::get()->getMeshManager()->meshListMap->size(); i++)
+//    {
+//        GameObject* obj = GameObject::Instantiate("Scene1Obj");
+//
+//        //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\cylinder.obj");
+//        Mesh* mesh = (*(*GraphicsEngine::get()->getMeshManager()->meshListMap)["Scene1"])[i];
+//
+//        //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\grass.png");
+//
+//        MeshComponent* meshComponent = new MeshComponent();
+//        obj->AttachComponent(meshComponent);
+//        meshComponent->SetMesh(mesh);
+//        //meshComponent->SetTexture(texture);
+//
+//        int j = 0;
+//
+//        for (const auto& pair : gameObjectMap)
+//        {
+//            if (pair.first.find("Scene1") != std::string::npos)
+//            {
+//                j++;
+//            }
+//        }
+//
+//        if (i > 0)
+//            obj->SetName("Scene1 (" + std::to_string(i) + ')');
+//
+//        gameObjectList.push_back(obj);
+//        gameObjectMap.emplace(obj->GetName(), obj);
+//        SelectGameObject(obj);
+//
+//        return obj;
+//    }
+//    
+//}
+
 GameObject* GameObjectManager::FindObjectByName(std::string name)
 {
     if (this->gameObjectMap[name] != NULL) {
@@ -460,6 +499,42 @@ void GameObjectManager::CreateLucy()
     gameObjectList.push_back(obj);
     gameObjectMap.emplace(obj->GetName(), obj);
     SelectGameObject(obj);
+}
+
+void GameObjectManager::CreateScene1()
+{
+    std::cout << (*(*GraphicsEngine::get()->getMeshManager()->meshListMap)["Scene1"]).size() << std::endl;
+    for (int i = 0; i < (*(*GraphicsEngine::get()->getMeshManager()->meshListMap)["Scene1"]).size(); i++)
+    {
+        GameObject* obj = GameObject::Instantiate("Scene1Obj");
+
+        //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\cylinder.obj");
+        Mesh* mesh = (*(*GraphicsEngine::get()->getMeshManager()->meshListMap)["Scene1"])[i];
+
+        //Texture* texture = GraphicsEngine::get()->getTextureManager()->CreateTextureFromFile(L"Assets\\Textures\\grass.png");
+
+        MeshComponent* meshComponent = new MeshComponent();
+        obj->AttachComponent(meshComponent);
+        meshComponent->SetMesh(mesh);
+        //meshComponent->SetTexture(texture);
+
+        int j = 0;
+
+        for (const auto& pair : gameObjectMap)
+        {
+            if (pair.first.find("Scene1") != std::string::npos)
+            {
+                j++;
+            }
+        }
+
+        if (i > 0)
+            obj->SetName("Scene1 (" + std::to_string(i) + ')');
+
+        gameObjectList.push_back(obj);
+        gameObjectMap.emplace(obj->GetName(), obj);
+        SelectGameObject(obj);
+    }
 }
 
 void GameObjectManager::CreateObjectFromFile(std::string name, PrimitiveType type, SimpleMath::Vector3 position, SimpleMath::Vector3 rotation, SimpleMath::Vector3 scale, bool hasPhysics)
