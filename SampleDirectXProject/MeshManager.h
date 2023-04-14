@@ -6,6 +6,7 @@
 #include "ThreadPool.h"
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 class Mesh;
 class MeshManager : public ResourceManager
@@ -15,7 +16,10 @@ public:
 	~MeshManager();
 	Mesh* CreateMeshFromFile(const wchar_t* file_path);
 	void CreateMesh(const wchar_t* file_path, std::string name);
+	void LoadMeshesFromFile(std::string file_path, std::string name);
+
 	std::unordered_map<std::string, Mesh*>* meshMap;
+	std::unordered_map<std::string, std::vector<Mesh*>*>* meshListMap;
 protected:
 	Mesh* mesh;
 

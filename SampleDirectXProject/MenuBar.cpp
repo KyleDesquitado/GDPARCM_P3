@@ -110,6 +110,10 @@ void MenuBar::DrawUI()
                 {
                     GameObjectManager::Get()->CreateArmadillo();
                 }
+                if (ImGui::MenuItem("Scene1"))
+                {
+                    GameObjectManager::Get()->CreateScene1();
+                }
 
                 ImGui::EndMenu();
             }
