@@ -4,9 +4,10 @@
 
 MeshManager::MeshManager()
 {
+	std::cout << "Created Mesh Manager"<<std::endl;
 	mesh = nullptr;
 
-	this->threadPool = new ThreadPool("ThreadPool", 8);
+	this->threadPool = new ThreadPool("ThreadPool", 5);
 	this->threadPool->startScheduler();
 	this->meshMap = new std::unordered_map<std::string, Mesh*>();
 

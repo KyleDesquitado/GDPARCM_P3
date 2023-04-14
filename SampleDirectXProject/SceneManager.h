@@ -40,11 +40,7 @@ public:
 
 public:
     Scene sceneArray[5];
-    Scene SceneA;
-    Scene SceneB;
-    Scene SceneC;
-    Scene SceneD;
-    Scene SceneE;
+
 public:
 
     void LoadAllScenes();

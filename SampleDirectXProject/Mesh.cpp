@@ -20,6 +20,7 @@ Mesh::Mesh(const wchar_t* full_path, MeshLoaderThread* listener) : Resource(full
 	// set thread listener
 	threadListener = listener;
 
+	std::cout << "Starting mesh " << threadListener->sceneType << std::endl;
 	#pragma region MeshLoader
 	tinyobj::attrib_t attribs;
 	std::vector<tinyobj::shape_t> shapes;
@@ -30,7 +31,7 @@ Mesh::Mesh(const wchar_t* full_path, MeshLoaderThread* listener) : Resource(full
 
 	std::wstring w_inputfile = std::wstring(full_path);
 	std::string inputfile = std::string(w_inputfile.begin(), w_inputfile.end());
-
+	std::cout << "check point " << threadListener->sceneType << std::endl;
 	bool res = tinyobj::LoadObj(&attribs, &shapes, &materials, &warn, &err, inputfile.c_str());
 
 	if (!err.empty()) throw std::exception("Mesh not created successfully");
@@ -42,8 +43,8 @@ Mesh::Mesh(const wchar_t* full_path, MeshLoaderThread* listener) : Resource(full
 
 	int vector_size = 0;
 
-	// UPDATE TOTAL SIZE OF SHAPE IN THREAD LOADER
-	threadListener->nTotalVertices = shapes.size();
+	//// UPDATE TOTAL SIZE OF SHAPE IN THREAD LOADER
+	//threadListener->nTotalVertices = shapes.size();
 
 	for (size_t s = shapes.size(); s-- > 0; ) {
 		vector_size += shapes[s].mesh.indices.size();
@@ -63,7 +64,7 @@ Mesh::Mesh(const wchar_t* full_path, MeshLoaderThread* listener) : Resource(full
 			
 			// UPDATE TOTAL LOADED VERTICES OF SHAPE IN THREAD LOADER
 			SceneManager::Get()->UpdateSceneState(listener->sceneType);
-			//std::cout << "Count: " << f << std::endl;
+			
 
 			for (unsigned char v = 0; v < num_face_verts; v++)
 			{

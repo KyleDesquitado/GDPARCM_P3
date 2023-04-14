@@ -36,22 +36,6 @@ void SceneManager::Initialize()
 
     instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\armadillo.obj", 212574));
 
-    //populate the model list of id from the available mesh list
-    instance->sceneArray[0].modelList.push_back(std::make_pair(instance->availableMeshList[3].first, instance->availableMeshList[3].second));
-    instance->sceneArray[1].modelList.push_back(std::make_pair(instance->availableMeshList[3].first, instance->availableMeshList[3].second));
-    instance->sceneArray[2].modelList.push_back(std::make_pair(instance->availableMeshList[3].first, instance->availableMeshList[3].second));
-    instance->sceneArray[3].modelList.push_back(std::make_pair(instance->availableMeshList[3].first, instance->availableMeshList[3].second));
-    instance->sceneArray[4].modelList.push_back(std::make_pair(instance->availableMeshList[3].first, instance->availableMeshList[3].second));
-    //SceneA.modelList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
-
-    for (int i = 0; i < 5; i++)
-    {
-        // add all total vertices of listed model in [SECOND]
-        for (int j = 0; j < instance->sceneArray[i].modelList.size(); j++)
-        {
-            instance->sceneArray[i].TOTAL_VERTICES += instance->sceneArray[i].modelList[j].second;
-        }
-    }
 
     
 }
@@ -83,22 +67,22 @@ void SceneManager::LoadAllScenes()
 #pragma endregion
 
 
-    ////populate the model list of id from the available mesh list
-    //sceneArray[0].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    //sceneArray[1].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    //sceneArray[2].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    //sceneArray[3].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    //sceneArray[4].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    ////SceneA.modelList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
+    //populate the model list of id from the available mesh list
+    sceneArray[0].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    sceneArray[1].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    sceneArray[2].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    sceneArray[3].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    sceneArray[4].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    //SceneA.modelList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
 
-    //for (int i = 0; i < 5; i++)
-    //{
-    //    // add all total vertices of listed model in [SECOND]
-    //    for (int j = 0; j < sceneArray[i].modelList.size(); j++)
-    //    {
-    //        sceneArray[i].TOTAL_VERTICES +=sceneArray[i].modelList[j].second;
-    //    }
-    //}    
+    for (int i = 0; i < 5; i++)
+    {
+        // add all total vertices of listed model in [SECOND]
+        for (int j = 0; j < sceneArray[i].modelList.size(); j++)
+        {
+            sceneArray[i].TOTAL_VERTICES +=sceneArray[i].modelList[j].second;
+        }
+    }    
 
     for (int i = 0; i < 5; i++)
     {
