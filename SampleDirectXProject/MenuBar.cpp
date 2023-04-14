@@ -6,6 +6,7 @@
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_dx11.h"
 #include "imgui/imgui_impl_win32.h"
+#include "SceneManager.h"
 
 MenuBar::MenuBar() : UIScreen("MenuBar", true)
 {
@@ -110,6 +111,11 @@ void MenuBar::DrawUI()
                 {
                     GameObjectManager::Get()->CreateArmadillo();
                 }
+                if (ImGui::MenuItem("LoadAllScene"))
+                {
+                    SceneManager::Get()->LoadAllScenes();
+                }
+
 
                 ImGui::EndMenu();
             }

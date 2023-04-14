@@ -13,8 +13,14 @@
 #include <iostream>
 #include <cstddef>
 
-Mesh::Mesh(const wchar_t* full_path) : Resource(full_path)
+#include "MeshLoaderThread.h"
+
+Mesh::Mesh(const wchar_t* full_path, MeshLoaderThread* listener) : Resource(full_path)
 {
+	// set thread listener
+	threadListener = listener;
+
+	#pragma region MeshLoader
 	tinyobj::attrib_t attribs;
 	std::vector<tinyobj::shape_t> shapes;
 	std::vector<tinyobj::material_t> materials;
@@ -35,6 +41,10 @@ Mesh::Mesh(const wchar_t* full_path) : Resource(full_path)
 
 
 	int vector_size = 0;
+
+	// UPDATE TOTAL SIZE OF SHAPE IN THREAD LOADER
+	threadListener->nTotalVertices = shapes.size();
+
 	for (size_t s = shapes.size(); s-- > 0; ) {
 		vector_size += shapes[s].mesh.indices.size();
 	}
@@ -50,8 +60,10 @@ Mesh::Mesh(const wchar_t* full_path) : Resource(full_path)
 		for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++)
 		{
 			unsigned char num_face_verts = shapes[s].mesh.num_face_vertices[f];
-
-			std::cout <<"Count: "<< f << std::endl;
+			
+			// UPDATE TOTAL LOADED VERTICES OF SHAPE IN THREAD LOADER
+			SceneManager::Get()->UpdateSceneState(listener->sceneType);
+			//std::cout << "Count: " << f << std::endl;
 
 			for (unsigned char v = 0; v < num_face_verts; v++)
 			{
@@ -60,7 +72,7 @@ Mesh::Mesh(const wchar_t* full_path) : Resource(full_path)
 				tinyobj::real_t vx = attribs.vertices[index.vertex_index * 3 + 0];
 				tinyobj::real_t vy = attribs.vertices[index.vertex_index * 3 + 1];
 				tinyobj::real_t vz = attribs.vertices[index.vertex_index * 3 + 2];
-				
+
 				tinyobj::real_t tx = 0, ty = 0;
 				if (index.texcoord_index >= 0)
 				{
@@ -84,8 +96,13 @@ Mesh::Mesh(const wchar_t* full_path) : Resource(full_path)
 	vertexBuffer = GraphicsEngine::get()->getRenderSystem()->createVertexBuffer(&list_vertices[0], sizeof(VertexMesh),
 		(UINT)list_vertices.size(), shader_byte_code, (UINT)size_shader);
 	indexBuffer = GraphicsEngine::get()->getRenderSystem()->createIndexBuffer(&list_indices[0], (UINT)list_indices.size());
+	std::cout << "Total count: " << SceneManager::Get()->SceneA.LOADED_VERTICES << "/" << SceneManager::Get()->SceneA.TOTAL_VERTICES << std::endl;
 
 	std::cout << "mesh" << std::endl;
+	#pragma endregion
+
+
+	
 }
 
 Mesh::~Mesh()

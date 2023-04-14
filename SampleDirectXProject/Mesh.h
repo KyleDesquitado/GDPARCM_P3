@@ -7,23 +7,30 @@
 #include "Vertex.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "IExecutionEvent.h"
 
+class MeshLoaderThread;
 class VertexMesh;
 class Mesh : public Resource
 {
 public:
-	Mesh(const wchar_t* full_path);
+	Mesh(const wchar_t* full_path, MeshLoaderThread* listener);
 	~Mesh();
 public:
 	VertexBuffer* GetVertexBuffer() const;
 	IndexBuffer* GetIndexBuffer() const;
 	const std::vector<VertexMesh>& GetVertices() const;
+
+	int CountTotalVertices(const wchar_t* full_path);
 private:
 	VertexBuffer* vertexBuffer;
 	IndexBuffer* indexBuffer;
 	std::vector<VertexMesh> list_vertices;
 	std::vector<unsigned int> list_indices;
+
 private:
 	friend class DeviceContext;
+	MeshLoaderThread* threadListener;
+
 };
 

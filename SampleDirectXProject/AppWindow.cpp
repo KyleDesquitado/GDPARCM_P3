@@ -27,6 +27,7 @@
 #include <stdint.h>
 
 #include <Windows.h>
+#include "SceneManager.h"
 
 AppWindow::AppWindow()
 {
@@ -94,7 +95,7 @@ void AppWindow::onUpdate()
 
 	const float deltaTime = EngineTime::getDeltaTime();
 
-	// Update scene camera
+	// Update id camera
 	sceneCamera->Update(deltaTime);
 
 	EngineBackend* backend = EngineBackend::Get();

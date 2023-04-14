@@ -168,6 +168,7 @@
     <ClCompile Include="Libs\jsoncpp-1.9.5\src\lib_json\json_writer.cpp" />
     <ClCompile Include="Libs\jsoncpp-1.9.5\src\test_lib_json\fuzz.cpp" />
     <ClCompile Include="Libs\jsoncpp-1.9.5\src\test_lib_json\jsontest.cpp" />
+    <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuBar.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="RotationMovementComponent.cpp" />
     <ClCompile Include="SceneCamera.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneReader.cpp" />
     <ClCompile Include="SceneWriter.cpp" />
     <ClCompile Include="SimpleMath.cpp" />
@@ -256,11 +258,13 @@
     <ClInclude Include="Libs\jsoncpp-1.9.5\src\lib_json\json_tool.h" />
     <ClInclude Include="Libs\jsoncpp-1.9.5\src\test_lib_json\fuzz.h" />
     <ClInclude Include="Libs\jsoncpp-1.9.5\src\test_lib_json\jsontest.h" />
+    <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="MenuBar.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="MeshLoaderThread.h" />
     <ClInclude Include="MeshManager.h" />
+    <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="ObjectParentingScreen.h" />
     <ClInclude Include="ObjectProperty.h" />
     <ClInclude Include="pch.h" />
@@ -275,6 +279,7 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="RotationMovementComponent.h" />
     <ClInclude Include="SceneCamera.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneReader.h" />
     <ClInclude Include="SceneWriter.h" />
     <ClInclude Include="SimpleMath.h" />

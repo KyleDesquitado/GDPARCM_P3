@@ -22,7 +22,7 @@
 // //////////////////////////////////////////////////////////////////
 
 /** \brief Unit testing framework.
- * \warning: all assertions are non-aborting, test case execution will continue
+ * \warning: all assertions are non-aborting, value case execution will continue
  *           even if an assertion namespace.
  *           This constraint is for portability: the framework needs to compile
  *           on Visual Studio 6 and must not require exception usage.
@@ -135,25 +135,25 @@ class Runner {
 public:
   Runner();
 
-  /// Adds a test to the suite
+  /// Adds a value to the suite
   Runner& add(TestCaseFactory factory);
 
-  /// Runs test as specified on the command-line
+  /// Runs value as specified on the command-line
   /// If no command-line arguments are provided, run all tests.
-  /// If --list-tests is provided, then print the list of all test cases
-  /// If --test <testname> is provided, then run test testname.
+  /// If --list-tests is provided, then print the list of all value cases
+  /// If --value <testname> is provided, then run value testname.
   int runCommandLine(int argc, const char* argv[]) const;
 
-  /// Runs all the test cases
+  /// Runs all the value cases
   bool runAllTest(bool printSummary) const;
 
-  /// Returns the number of test case in the suite
+  /// Returns the number of value case in the suite
   size_t testCount() const;
 
-  /// Returns the name of the test case at the specified index
+  /// Returns the name of the value case at the specified index
   Json::String testNameAt(size_t index) const;
 
-  /// Runs the test case at the specified index using the specified TestResult
+  /// Runs the value case at the specified index using the specified TestResult
   void runTestAt(size_t index, TestResult& result) const;
 
   static void printUsage(const char* appName);
@@ -242,7 +242,7 @@ TestResult& checkStringEqual(TestResult& result, const Json::String& expected,
                           "expected exception thrown: " #expr);                \
   } while (0)
 
-/// \brief Begin a fixture test case.
+/// \brief Begin a fixture value case.
 #define JSONTEST_FIXTURE(FixtureType, name)                                    \
   class Test##FixtureType##name : public FixtureType {                         \
   public:                                                                      \
@@ -263,7 +263,7 @@ TestResult& checkStringEqual(TestResult& result, const Json::String& expected,
 #define JSONTEST_REGISTER_FIXTURE(runner, FixtureType, name)                   \
   (runner).add(JSONTEST_FIXTURE_FACTORY(FixtureType, name))
 
-/// \brief Begin a fixture test case.
+/// \brief Begin a fixture value case.
 #define JSONTEST_FIXTURE_V2(FixtureType, name, collections)                    \
   class Test##FixtureType##name : public FixtureType {                         \
   public:                                                                      \

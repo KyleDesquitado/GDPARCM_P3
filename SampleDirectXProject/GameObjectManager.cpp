@@ -13,8 +13,11 @@
 #include "EditorAction.h"
 #include <random>
 
+#include "SceneManager.h"
+#include "MeshUtils.h"
+
 GameObjectManager* GameObjectManager::instance = nullptr;
-static const std::string NAME_TEAPOT = "Teapot";
+const std::string NAME_TEAPOT = "Teapot";
 const std::string NAME_CUBE = "Cube";
 const std::string NAME_PLANE = "Plane";
 const std::string NAME_SPHERE = "Sphere";
@@ -35,18 +38,13 @@ GameObjectManager::GameObjectManager()
 
 void GameObjectManager::Initialize()
 {
+    SceneManager::Initialize();
     instance = new GameObjectManager();
-    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\teapot.obj", NAME_TEAPOT);
-    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\cube.obj", NAME_CUBE);
-    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\plane.obj", NAME_PLANE);
-    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\sphere.obj", NAME_SPHERE);
-    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\capsule.obj", NAME_CAPSULE);
-    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\cylinder.obj", NAME_CYLINDER);
-    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\bunny.obj", NAME_BUNNY);
-    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\armadillo.obj", NAME_ARMADILLO);
-    GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\statue.obj", NAME_LUCY);
+ 
 
+    //GraphicsEngine::get()->getMeshManager()->CreateMesh(L"Assets\\Meshes\\statue.obj", NAME_LUCY, SceneManager::A);
 
+    //SceneManager::Get()->SceneA.TOTAL_VERTICES += MeshUtils::CountTotalVertices(L"Assets\\Meshes\\statue.obj");
 }
 
 GameObjectManager* GameObjectManager::Get()
@@ -69,6 +67,9 @@ void GameObjectManager::Update()
 				gameObject->Update(delta);
         }
     }
+
+
+  
 }
 
 void GameObjectManager::CreateGameObject()

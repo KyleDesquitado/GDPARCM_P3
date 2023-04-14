@@ -22,21 +22,25 @@ Mesh* MeshManager::CreateMeshFromFile(const wchar_t* file_path)
 	return static_cast<Mesh*>(CreateResourceFromFile(file_path));
 }
 
-void MeshManager::CreateMesh(const wchar_t* file_path, std::string name)
+void MeshManager::CreateMesh(const wchar_t* file_path, std::string name, SceneManager::SceneID scene)
 {
-	MeshLoaderThread* meshLoader = new MeshLoaderThread(file_path, name, meshMap);
+	// create and schedule mesh loader
+	MeshLoaderThread* meshLoader = new MeshLoaderThread(file_path, name, meshMap, scene);
+	// save all
 	threadPool->scheduleTask(meshLoader);
 
 }
 
 Resource* MeshManager::CreateResourceFromFileConcerete(const wchar_t* file_path)
 {
-	Mesh* mesh = nullptr;
+	/*Mesh* mesh = nullptr;
 	try
 	{
-		mesh = new Mesh(file_path);
+		mesh = new Mesh(file_path, );
 	}
 	catch (...) {}
 
-	return mesh;
+	return mesh;*/
+
+	return nullptr;
 }
