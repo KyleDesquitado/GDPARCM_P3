@@ -56,7 +56,7 @@ public:
 
     void LoadAllScenes();
     void UpdateSceneState(SceneID scene);
-    void LoadScene(SceneID scene);
+    void InitializeScene(SceneID scene);
     void UnloadScene(SceneID scene);
     Scene getScene(SceneID scene);
     void EnableSceneModels(bool isEnabled, SceneID scene);
@@ -64,5 +64,7 @@ public:
     void SetSceneState(SceneID scene, LoadState state);
 
 public:
+    void LoadScene(SceneID scene);
     void ResetScene(SceneID scene);
+    void ResetAll();
 };

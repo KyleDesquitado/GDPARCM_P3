@@ -28,7 +28,7 @@ void LoadingScreen::DrawUI()
 	ImGui::SameLine();
 	if (ImGui::Button("Unload All"))
 	{
-		
+		SceneManager::Get()->ResetAll();
 	}
 
 	ImGui::Separator();
@@ -44,8 +44,13 @@ void LoadingScreen::DrawUI()
 		//ImGui::SliderFloat("Scene 1 Loading Bar", &progress[i], 0, 100);
 
 		// min to max vertices
-		progress[i] = SceneManager::Get()->sceneArray[i].LOADED_VERTICES;
-		ImGui::SliderFloat((name+id+loading).c_str(), &progress[i], 0, (float)SceneManager::Get()->sceneArray[i].TOTAL_VERTICES);
+		progress[i] = ((float)(SceneManager::Get()->sceneArray[i].LOADED_VERTICES)) / ((float)(SceneManager::Get()->sceneArray[i].TOTAL_VERTICES));
+		if (std::isnan(progress[i]))
+			progress[i] = 0;
+
+		progress[i] * 100;
+
+		ImGui::SliderFloat((name + id + loading).c_str(), &progress[i], 0, 100);
 		ImGui::SameLine();
 
 		string Toggle = "Toggle ";
@@ -53,12 +58,13 @@ void LoadingScreen::DrawUI()
 		string load = "Load ";
 		if (ImGui::Button((load + name + id).c_str()))
 		{
-
+			// load
+			SceneManager::Get()->LoadScene((SceneManager::SceneID)i);
 		}
 		ImGui::SameLine();
 		if (ImGui::Button((unload + name + id).c_str()))
 		{
-
+			SceneManager::Get()->ResetScene((SceneManager::SceneID)i);
 		}
 		ImGui::SameLine();
 		if (ImGui::Checkbox((Toggle + name + id).c_str(),&isEnabled[i]))

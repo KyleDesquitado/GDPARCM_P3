@@ -28,18 +28,30 @@ void SceneManager::Initialize()
     instance->sceneArray[3].id = D;
     instance->sceneArray[4].id = E;
 
-    
     // populate meshlist -> first: model path | second: model face vertices size
     instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\teapot.obj", 8020));
-
     instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\cube.obj", 12));
-
-    instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\bunny.obj",4968) );
+    instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\bunny.obj", 4968));
 
     instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\armadillo.obj", 212574));
+    instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\asteroid.obj", 768));
+    instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\monitor.obj", 12236));
+
+    instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\spaceship.obj", 1080));
+    instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\house.obj", 200000));
+    instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\statue.obj", 5670));
+
+    instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\suzanne.obj", 968));
+    instance->availableMeshList.push_back(std::make_pair(L"Assets\\Meshes\\torus.obj", 2880));
 
 
-    
+    //populate the model list of id from the available mesh list
+    instance->sceneArray[0].modelInfoList.push_back(std::make_pair(instance->availableMeshList[0].first, instance->availableMeshList[0].second));
+    instance->sceneArray[1].modelInfoList.push_back(std::make_pair(instance->availableMeshList[1].first, instance->availableMeshList[1].second));
+    instance->sceneArray[2].modelInfoList.push_back(std::make_pair(instance->availableMeshList[2].first, instance->availableMeshList[2].second));
+    instance->sceneArray[3].modelInfoList.push_back(std::make_pair(instance->availableMeshList[3].first, instance->availableMeshList[3].second));
+    //[4].modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    //SceneA.modelInfoList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
 }
 
 SceneManager* SceneManager::Get()
@@ -49,34 +61,6 @@ SceneManager* SceneManager::Get()
 
 void SceneManager::LoadAllScenes()
 {
-
-#pragma region Manual
-    //populate the model list of id from the available mesh list
-    //SceneA.modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    ////SceneA.modelInfoList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
-
-    //// add all total vertices of listed model in id [SECOND]
-    //for (int i = 0; i < SceneA.modelInfoList.size(); i++)
-    //{
-    //    SceneA.TOTAL_VERTICES += SceneA.modelInfoList[i].second;
-    //}
-
-    //// create mesh from the path of the models [FIRST]
-    //for (int i = 0; i < SceneA.modelInfoList.size(); i++)
-    //{
-    //    GraphicsEngine::get()->getMeshManager()->CreateMesh(SceneA.modelInfoList[i].first, " ", SceneA.id);
-    //}
-#pragma endregion
-
-
-    //populate the model list of id from the available mesh list
-    sceneArray[0].modelInfoList.push_back(std::make_pair(availableMeshList[0].first, availableMeshList[0].second));
-    sceneArray[1].modelInfoList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
-    sceneArray[2].modelInfoList.push_back(std::make_pair(availableMeshList[2].first, availableMeshList[2].second));
-    sceneArray[3].modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    //[4].modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    //SceneA.modelInfoList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
-
     for (int i = 0; i < 5; i++)
     {
         // add all total vertices of listed model in [SECOND]
@@ -91,7 +75,7 @@ void SceneManager::LoadAllScenes()
     {
         if (instance->sceneArray[i].loadState == isUnloaded)
         {
-            instance->LoadScene((SceneID)i);
+            instance->InitializeScene((SceneID)i);
             // create mesh from the path of the models [FIRST]
             for (int j = 0; j < sceneArray[i].modelInfoList.size(); j++)
             {
@@ -101,10 +85,29 @@ void SceneManager::LoadAllScenes()
         }
         
     }
+}
 
-   
+void SceneManager::LoadScene(SceneID scene)
+{
     
+    // add all total vertices of listed model in [SECOND]
+    for (int j = 0; j < sceneArray[(int)scene].modelInfoList.size(); j++)
+    {
+        if (sceneArray[(int)scene].loadState == LoadState::isUnloaded);
+            sceneArray[(int)scene].TOTAL_VERTICES += sceneArray[(int)scene].modelInfoList[j].second;
+    }
     
+
+    if (instance->sceneArray[(int)scene].loadState == isUnloaded)
+    {
+        instance->InitializeScene(scene);
+        // create mesh from the path of the models [FIRST]
+        for (int j = 0; j < sceneArray[(int)scene].modelInfoList.size(); j++)
+        {
+            if (sceneArray[(int)scene].loadState == LoadState::isUnloaded);
+            GraphicsEngine::get()->getMeshManager()->CreateMesh(sceneArray[(int)scene].modelInfoList[j].first, " ", sceneArray[(int)scene].id);
+        }
+    }
 
     
 }
@@ -121,7 +124,7 @@ void SceneManager::UpdateSceneState(SceneID scene)
 	}
 }
 
-void SceneManager::LoadScene(SceneID scene)
+void SceneManager::InitializeScene(SceneID scene)
 {
     switch (scene)
     {
@@ -281,13 +284,6 @@ void SceneManager::ResetScene(SceneID scene)
         }
         sceneArray[0].sceneGameObjectList.clear();
 
-        for (int i = 0; i < sceneArray[0].modelInfoList.size(); i++)
-        {
-            delete(&(sceneArray[0].modelInfoList[i]));
-        }
-
-        sceneArray[0].modelInfoList.clear();
-
     }
     break;
     case B:
@@ -304,13 +300,6 @@ void SceneManager::ResetScene(SceneID scene)
             GameObjectManager::Get()->DestroyObject(sceneArray[1].sceneGameObjectList[i]);
         }
         sceneArray[1].sceneGameObjectList.clear();
-
-        for (int i = 0; i < sceneArray[1].modelInfoList.size(); i++)
-        {
-            delete(&(sceneArray[1].modelInfoList[i]));
-        }
-
-        sceneArray[1].modelInfoList.clear();
     }
     break;
     case C:
@@ -327,14 +316,7 @@ void SceneManager::ResetScene(SceneID scene)
         {
             GameObjectManager::Get()->DestroyObject(sceneArray[2].sceneGameObjectList[i]);
         }
-        sceneArray[0].sceneGameObjectList.clear();
-
-        for (int i = 0; i < sceneArray[2].modelInfoList.size(); i++)
-        {
-            delete(&(sceneArray[2].modelInfoList[i]));
-        }
-
-        sceneArray[2].modelInfoList.clear();
+        sceneArray[2].sceneGameObjectList.clear();
     }
     break;
     case D:
@@ -351,14 +333,7 @@ void SceneManager::ResetScene(SceneID scene)
         {
             GameObjectManager::Get()->DestroyObject(sceneArray[3].sceneGameObjectList[i]);
         }
-        sceneArray[0].sceneGameObjectList.clear();
-
-        for (int i = 0; i < sceneArray[3].modelInfoList.size(); i++)
-        {
-            delete(&(sceneArray[3].modelInfoList[i]));
-        }
-
-        sceneArray[3].modelInfoList.clear();
+        sceneArray[3].sceneGameObjectList.clear();
     }
     break;
     case E:
@@ -375,14 +350,7 @@ void SceneManager::ResetScene(SceneID scene)
         {
             GameObjectManager::Get()->DestroyObject(sceneArray[4].sceneGameObjectList[i]);
         }
-        sceneArray[0].sceneGameObjectList.clear();
-
-        for (int i = 0; i < sceneArray[4].modelInfoList.size(); i++)
-        {
-            delete(&(sceneArray[4].modelInfoList[i]));
-        }
-
-        sceneArray[4].modelInfoList.clear();
+        sceneArray[4].sceneGameObjectList.clear();
     }
     break;
     }
