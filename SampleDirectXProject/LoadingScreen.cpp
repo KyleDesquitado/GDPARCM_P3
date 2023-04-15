@@ -1,6 +1,7 @@
 #include "LoadingScreen.h"
 #include "SceneManager.h"
-#include <string>;
+#include <string>
+#include "EngineTime.h"
 
 LoadingScreen::LoadingScreen(): UIScreen("LoadingScreen", true)
 {
@@ -87,7 +88,9 @@ void LoadingScreen::DrawUI()
 			SceneManager::Get()->EnableScene(isEnabled[i], (SceneManager::SceneID)i);
 		}
 	}
-	
-
+	string FPS = std::to_string(EngineTime::getFPS());
+	ImGui::Text(("FPS: " + FPS).c_str());
 	ImGui::End();
+
+	
 }

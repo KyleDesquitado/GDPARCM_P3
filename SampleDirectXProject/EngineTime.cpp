@@ -20,6 +20,11 @@ double EngineTime::getDeltaTime()
 	return sharedInstance->deltaTime;
 }
 
+float EngineTime::getFPS()
+{
+	return sharedInstance->fps;
+}
+
 void EngineTime::LogFrameStart()
 {
 	sharedInstance->start = std::chrono::system_clock::now();

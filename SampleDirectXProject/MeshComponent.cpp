@@ -51,7 +51,7 @@ void MeshComponent::Start()
 
 void MeshComponent::Update(float deltaTime)
 {
-	CalculateBounds();
+	//CalculateBounds();
 
 	constant cc;
 	cc.m_time = deltaTime;
@@ -102,7 +102,7 @@ void MeshComponent::SetMesh(Mesh* inMesh)
 {
 	mesh = inMesh;
 
-	CalculateBounds();
+	//CalculateBounds();
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;

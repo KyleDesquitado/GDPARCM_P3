@@ -4,6 +4,7 @@
 #include <ctime>
 
 class Window;
+class LoadingScreen;
 
 class EngineTime
 {
@@ -30,5 +31,6 @@ private:
 	float fps = 0.0f;
 
 	friend class Window;
+	friend class LoadingScreen;
 };
 
