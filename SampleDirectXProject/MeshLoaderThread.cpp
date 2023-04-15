@@ -16,7 +16,7 @@ MeshLoaderThread::MeshLoaderThread(const wchar_t* file_path, std::string _name, 
 
 void MeshLoaderThread::onStartTask()
 {
-	
+	IETThread::sleep(500);
 		
 	std:: cout << "StartThread"<< std::to_string(sceneType)<< std::endl;
 	isRunning = true;

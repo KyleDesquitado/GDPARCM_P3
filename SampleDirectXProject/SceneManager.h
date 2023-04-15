@@ -2,6 +2,7 @@
 #include <vector>
 #include <array>
 #include "GameObject.h"
+#include "IETSemaphore.h"
 
 typedef std::pair<const wchar_t*, int> ModelInfoPair;
 class SceneManager
@@ -13,6 +14,7 @@ private:
 
 public:
     SceneManager();
+    IETSemaphore* mutex[5];
 
 public:
     static void Initialize();

@@ -14,7 +14,7 @@ public:
 	void release(int permits) const;
 
 private:
-	const static int GLOBAL_MAX_PERMIT = 50;
+	const static int GLOBAL_MAX_PERMIT = 1;
 	typedef std::counting_semaphore<GLOBAL_MAX_PERMIT> Semaphore;
 	Semaphore* semaphore;
 };

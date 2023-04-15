@@ -64,8 +64,12 @@ Mesh::Mesh(const wchar_t* full_path, MeshLoaderThread* listener) : Resource(full
 			
 			// UPDATE TOTAL LOADED VERTICES OF SHAPE IN THREAD LOADER
 			
-
+			// mutex[index] acquires -> corresponds for a scene
+			SceneManager::Get()->mutex[(int)listener->sceneType]->acquire();
+			// critical section of mesh threads that accesses the total loaded meshes the particular scene
 			SceneManager::Get()->UpdateSceneState(listener->sceneType);
+			//[index] release->corresponds for a scene
+			SceneManager::Get()->mutex[(int)listener->sceneType]->release();
 			
 
 			for (unsigned char v = 0; v < num_face_verts; v++)

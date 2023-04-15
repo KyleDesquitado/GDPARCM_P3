@@ -16,11 +16,17 @@ const std::string NAME_LUCY = "Lucy";
 
 SceneManager::SceneManager()
 {
+
 }
 
 void SceneManager::Initialize()
 {
 	instance = new SceneManager();
+
+    for (int i = 0; i < 5; i++)
+    {
+        instance->mutex[i] = new IETSemaphore(1);
+    }
     // Instantiate scene ID
     instance->sceneArray[0].id = A;
     instance->sceneArray[1].id = B;

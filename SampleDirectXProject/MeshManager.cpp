@@ -2,6 +2,7 @@
 #include "Mesh.h"
 #include "MeshLoaderThread.h"
 
+
 MeshManager::MeshManager()
 {
 	std::cout << "Created Mesh Manager"<<std::endl;
@@ -10,6 +11,11 @@ MeshManager::MeshManager()
 	this->threadPool = new ThreadPool("ThreadPool", 5);
 	this->threadPool->startScheduler();
 	this->meshMap = new std::unordered_map<const wchar_t*, Mesh*>();
+
+	for (int i = 0; i < 5; i++)
+	{
+		mutex[i] = new IETSemaphore(1);
+	}
 
 }
 
