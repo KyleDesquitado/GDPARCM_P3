@@ -27,23 +27,36 @@ public :
         D = 4,
         E = 5,
     };
+
+    enum LoadState
+    {
+        isLoading,
+        isLoaded,
+        isUnloaded
+    };
 public:
 	struct Scene
 	{
+        LoadState loadState = LoadState::isUnloaded;
         SceneID id = SceneID::NOT_SET;
         int TOTAL_VERTICES = 0;
         int LOADED_VERTICES = 0;
         bool isLoaded = false;
+        bool isUnloading = false;
         std::vector<ModelInfoPair> modelList;
 	};
 
 
 public:
     Scene sceneArray[5];
-
 public:
 
     void LoadAllScenes();
     void UpdateSceneState(SceneID scene);
     void initializeScene(SceneID scene);
+    void unloadScene(SceneID scene);
+    Scene getScene(SceneID scene);
+
+public:
+    void ResetScene(SceneID scene);
 };

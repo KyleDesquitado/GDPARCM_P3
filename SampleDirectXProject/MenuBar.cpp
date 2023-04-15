@@ -115,6 +115,10 @@ void MenuBar::DrawUI()
                 {
                     SceneManager::Get()->LoadAllScenes();
                 }
+                if (ImGui::MenuItem("UnloadSceneA"))
+                {
+                    SceneManager::Get()->unloadScene(SceneManager::Get()->A);
+                }
 
 
                 ImGui::EndMenu();

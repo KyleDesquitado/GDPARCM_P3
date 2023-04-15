@@ -37,3 +37,8 @@ void MeshLoaderThread::onFinishedExecution()
 		//memcpy((*meshMap)[name], mesh, sizeof(mesh));
 	}
 }
+
+void MeshLoaderThread::StopLoading()
+{
+	
+}

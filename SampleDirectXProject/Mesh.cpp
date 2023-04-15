@@ -63,11 +63,20 @@ Mesh::Mesh(const wchar_t* full_path, MeshLoaderThread* listener) : Resource(full
 			unsigned char num_face_verts = shapes[s].mesh.num_face_vertices[f];
 			
 			// UPDATE TOTAL LOADED VERTICES OF SHAPE IN THREAD LOADER
+			
+
 			SceneManager::Get()->UpdateSceneState(listener->sceneType);
 			
 
 			for (unsigned char v = 0; v < num_face_verts; v++)
 			{
+				if (SceneManager::Get()->getScene(listener->sceneType).isUnloading)
+				{
+					vertexBuffer = nullptr;
+					indexBuffer = nullptr;
+					SceneManager::Get()->ResetScene(listener->sceneType);
+					return;
+				}
 				tinyobj::index_t index = shapes[s].mesh.indices[index_offset + v];
 
 				tinyobj::real_t vx = attribs.vertices[index.vertex_index * 3 + 0];
@@ -97,7 +106,7 @@ Mesh::Mesh(const wchar_t* full_path, MeshLoaderThread* listener) : Resource(full
 	vertexBuffer = GraphicsEngine::get()->getRenderSystem()->createVertexBuffer(&list_vertices[0], sizeof(VertexMesh),
 		(UINT)list_vertices.size(), shader_byte_code, (UINT)size_shader);
 	indexBuffer = GraphicsEngine::get()->getRenderSystem()->createIndexBuffer(&list_indices[0], (UINT)list_indices.size());
-	std::cout << "Total count: " << SceneManager::Get()->SceneA.LOADED_VERTICES << "/" << SceneManager::Get()->SceneA.TOTAL_VERTICES << std::endl;
+	//std::cout << "Total count: " << SceneManager::Get()->SceneA.LOADED_VERTICES << "/" << SceneManager::Get()->SceneA.TOTAL_VERTICES << std::endl;
 
 	std::cout << "mesh" << std::endl;
 	#pragma endregion

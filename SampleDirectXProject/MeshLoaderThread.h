@@ -16,6 +16,8 @@ public:
     // Inherited via IExecutionEvent
     virtual void onFinishedExecution() override;
 
+    void StopLoading();
+
 private:
     Mesh* mesh;
     const wchar_t* path;

@@ -12,6 +12,7 @@ const std::string NAME_CYLINDER = "Cylinder";
 const std::string NAME_BUNNY = "Bunny";
 const std::string NAME_ARMADILLO = "Armadillo";
 const std::string NAME_LUCY = "Lucy";
+
 SceneManager::SceneManager()
 {
 }
@@ -86,6 +87,7 @@ void SceneManager::LoadAllScenes()
 
     for (int i = 0; i < 5; i++)
     {
+        instance->initializeScene((SceneID)i);
         // create mesh from the path of the models [FIRST]
         for (int j = 0; j < sceneArray[i].modelList.size(); j++)
         {
@@ -104,15 +106,114 @@ void SceneManager::UpdateSceneState(SceneID scene)
 {
 	switch (scene)
 	{
-		case A:instance->sceneArray[0].LOADED_VERTICES += 1; break;
-        case B:instance->sceneArray[1].LOADED_VERTICES += 1; break;
-        case C:instance->sceneArray[2].LOADED_VERTICES += 1; break;
-        case D:instance->sceneArray[3].LOADED_VERTICES += 1; break;
-        case E:instance->sceneArray[4].LOADED_VERTICES += 1; break;
+    case A:instance->sceneArray[0].LOADED_VERTICES += 1; break;
+    case B:instance->sceneArray[1].LOADED_VERTICES += 1; break;
+    case C:instance->sceneArray[2].LOADED_VERTICES += 1; break;
+    case D:instance->sceneArray[3].LOADED_VERTICES += 1; break;
+    case E:instance->sceneArray[4].LOADED_VERTICES += 1; break;
 	}
 }
 
 void SceneManager::initializeScene(SceneID scene)
 {
+    switch (scene)
+    {
+    case A:instance->sceneArray[0].loadState = isLoading; break;
+    case B:instance->sceneArray[1].loadState = isLoading; break;
+    case C:instance->sceneArray[2].loadState = isLoading; break;
+    case D:instance->sceneArray[3].loadState = isLoading; break;
+    case E:instance->sceneArray[4].loadState = isLoading; break;
+    }
 }
+
+void SceneManager::unloadScene(SceneID scene)
+{
+    switch (scene)
+    {
+    case A:instance->sceneArray[0].LOADED_VERTICES = 0; instance->sceneArray[0].isUnloading = true; break;
+    case B:instance->sceneArray[1].LOADED_VERTICES = 0; instance->sceneArray[1].isUnloading = true; break;
+    case C:instance->sceneArray[2].LOADED_VERTICES = 0; instance->sceneArray[2].isUnloading = true; break;
+    case D:instance->sceneArray[3].LOADED_VERTICES = 0; instance->sceneArray[3].isUnloading = true; break;
+    case E:instance->sceneArray[4].LOADED_VERTICES = 0; instance->sceneArray[4].isUnloading = true; break;
+    }
+}
+
+SceneManager::Scene SceneManager::getScene(SceneID scene)
+{
+    switch (scene)
+    {
+    case A:return instance->sceneArray[0]; break;
+    case B:return instance->sceneArray[1]; break;
+    case C:return instance->sceneArray[2]; break;
+    case D:return instance->sceneArray[3]; break;
+    case E:return instance->sceneArray[4]; break;
+    }
+}
+
+void SceneManager::ResetScene(SceneID scene)
+{
+    switch (scene)
+    {
+    case A:
+    {
+        sceneArray[0].isLoaded = false;
+        sceneArray[0].loadState = LoadState::isUnloaded;
+        sceneArray[0].id = SceneID::NOT_SET;
+        sceneArray[0].TOTAL_VERTICES = 0;
+        sceneArray[0].LOADED_VERTICES = 0;
+        sceneArray[0].isLoaded = false;
+        sceneArray[0].isUnloading = false;
+        //sceneArray[0].modelList.clear();
+    }
+    break;
+    case B:
+    {
+        sceneArray[1].isLoaded = false;
+        sceneArray[1].loadState = LoadState::isUnloaded;
+        sceneArray[1].id = SceneID::NOT_SET;
+        sceneArray[1].TOTAL_VERTICES = 0;
+        sceneArray[1].LOADED_VERTICES = 0;
+        sceneArray[1].isLoaded = false;
+        sceneArray[1].isUnloading = false;
+    }
+    break;
+    case C:
+    {
+        sceneArray[2].isLoaded = false;
+        sceneArray[2].loadState = LoadState::isUnloaded;
+        sceneArray[2].id = SceneID::NOT_SET;
+        sceneArray[2].TOTAL_VERTICES = 0;
+        sceneArray[2].LOADED_VERTICES = 0;
+        sceneArray[2].isLoaded = false;
+        sceneArray[2].isUnloading = false;
+    }
+    break;
+    case D:
+    {
+        sceneArray[3].isLoaded = false;
+        sceneArray[3].loadState = LoadState::isUnloaded;
+        sceneArray[3].id = SceneID::NOT_SET;
+        sceneArray[3].TOTAL_VERTICES = 0;
+        sceneArray[3].LOADED_VERTICES = 0;
+        sceneArray[3].isLoaded = false;
+        sceneArray[3].isUnloading = false;
+    }
+    break;
+    case E:
+    {
+        sceneArray[4].isLoaded = false;
+        sceneArray[4].loadState = LoadState::isUnloaded;
+        sceneArray[4].id = SceneID::NOT_SET;
+        sceneArray[4].TOTAL_VERTICES = 0;
+        sceneArray[4].LOADED_VERTICES = 0;
+        sceneArray[4].isLoaded = false;
+        sceneArray[4].isUnloading = false;
+    }
+    break;
+    }
+}
+
+
+
+
 
