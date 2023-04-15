@@ -45,7 +45,7 @@ public:
         bool isLoaded = false;
         bool isUnloading = false;
         std::vector<ModelInfoPair> modelInfoList;
-        std::vector <GameObject*>sceneGameObjectList();
+        std::vector <GameObject*>sceneGameObjectList;
         //std::unordered_map<ModelInfoPair, Mesh*> meshMap;
 	};
 

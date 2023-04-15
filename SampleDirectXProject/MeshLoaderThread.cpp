@@ -36,7 +36,7 @@ void MeshLoaderThread::onFinishedExecution()
 		(*meshMap)[path] = mesh;
 		std::wcout << "Loaded mesh: " << path << std::endl;
 		//memcpy((*meshMap)[name], mesh, sizeof(mesh));
-		GameObjectManager::Get()->CreateMesh(mesh, );
+		GameObjectManager::Get()->CreateMesh(mesh, this->sceneType);
 	}
 }
 

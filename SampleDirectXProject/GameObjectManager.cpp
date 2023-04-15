@@ -477,11 +477,10 @@ void GameObjectManager::CreateLucy()
 
 }
 
-GameObject* GameObjectManager::CreateMesh(Mesh* mesh, SceneManager::SceneID id)
+void GameObjectManager::CreateMesh(Mesh* mesh, SceneManager::SceneID id)
 {
     GameObject* obj = GameObject::Instantiate("model");
 
-    Mesh* mesh = mesh;
 
     MeshComponent* meshComponent = new MeshComponent();
     obj->AttachComponent(meshComponent);
@@ -507,7 +506,8 @@ GameObject* GameObjectManager::CreateMesh(Mesh* mesh, SceneManager::SceneID id)
     gameObjectMap.emplace(obj->GetName(), obj);
 
     // add to the model list in scene
-    SceneManager::Get()->getScene(id).sceneGameObjectList
+    obj->SetEnable(true);
+    SceneManager::Get()->getScene(id).sceneGameObjectList.push_back(obj);
         //SelectGameObject(obj);
 
 }

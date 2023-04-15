@@ -46,7 +46,7 @@ public:
 	void ApplyEditorAction(class EditorAction* action);
 
 public:
-	GameObject* CreateMesh(Mesh* mesh, SceneManager::SceneID id);
+	void CreateMesh(Mesh* mesh, SceneManager::SceneID id);
 	void CreateScene1ObjSet();
 	void CreateScene2ObjSet();
 	void CreateScene3ObjSet();

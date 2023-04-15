@@ -73,7 +73,7 @@ void SceneManager::LoadAllScenes()
     sceneArray[1].modelInfoList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
     sceneArray[2].modelInfoList.push_back(std::make_pair(availableMeshList[2].first, availableMeshList[2].second));
     sceneArray[3].modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    sceneArray[4].modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    //[4].modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
     //SceneA.modelInfoList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
 
     for (int i = 0; i < 5; i++)
