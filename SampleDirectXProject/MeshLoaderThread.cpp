@@ -3,7 +3,7 @@
 #include "IExecutionEvent.h"
 #include "Mesh.h"
 #include <string>
-MeshLoaderThread::MeshLoaderThread(const wchar_t* file_path, std::string _name, std::unordered_map<std::string, Mesh*>* _meshMap, SceneManager::SceneID scene)
+MeshLoaderThread::MeshLoaderThread(const wchar_t* file_path, std::string _name, std::unordered_map<const wchar_t*, Mesh*>* _meshMap, SceneManager::SceneID scene)
 {
 	// updated attributes necessary for loading
 	path = file_path;
@@ -32,8 +32,8 @@ void MeshLoaderThread::onFinishedExecution()
 {
 	if (mesh != nullptr)
 	{
-		(*meshMap)[name] = mesh;
-		//std::cout << "Loaded mesh: " << sizeof(mesh) << " " << sizeof((*meshMap)[name]) << std::endl;
+		(*meshMap)[path] = mesh;
+		std::wcout << "Loaded mesh: " << path << std::endl;
 		//memcpy((*meshMap)[name], mesh, sizeof(mesh));
 	}
 }
