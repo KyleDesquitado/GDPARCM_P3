@@ -135,6 +135,7 @@ void SceneManager::LoadScene(SceneID scene)
         {
             sceneArray[(int)scene].TOTAL_VERTICES += sceneArray[(int)scene].modelInfoList[j].second;
         }
+        SCENES_TOTAL_VERTICES += sceneArray[(int)scene].TOTAL_VERTICES;
 
 
 
@@ -170,6 +171,8 @@ void SceneManager::UpdateSceneState(SceneID scene)
     case D:instance->sceneArray[3].LOADED_VERTICES += 1; break;
     case E:instance->sceneArray[4].LOADED_VERTICES += 1; break;
 	}
+
+    SCENES_LOADED_VERTICES += 1;
 }
 
 void SceneManager::InitializeScene(SceneID scene)
@@ -324,6 +327,8 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[0].id = SceneID::NOT_SET;
         sceneArray[0].TOTAL_VERTICES = 0;
         sceneArray[0].LOADED_VERTICES = 0;
+        SCENES_TOTAL_VERTICES -= sceneArray[0].TOTAL_VERTICES;
+        SCENES_LOADED_VERTICES -= sceneArray[0].LOADED_VERTICES;
         sceneArray[0].isLoaded = false;
         sceneArray[0].isUnloading = true;
         for (int i = 0; i < sceneArray[0].sceneGameObjectList.size(); i++)
@@ -341,6 +346,8 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[1].id = SceneID::NOT_SET;
         sceneArray[1].TOTAL_VERTICES = 0;
         sceneArray[1].LOADED_VERTICES = 0;
+        SCENES_TOTAL_VERTICES -= sceneArray[1].TOTAL_VERTICES;
+        SCENES_LOADED_VERTICES -= sceneArray[1].LOADED_VERTICES;
         sceneArray[1].isLoaded = false;
         sceneArray[1].isUnloading = true;
         for (int i = 0; i < sceneArray[0].sceneGameObjectList.size(); i++)
@@ -357,6 +364,8 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[2].id = SceneID::NOT_SET;
         sceneArray[2].TOTAL_VERTICES = 0;
         sceneArray[2].LOADED_VERTICES = 0;
+        SCENES_TOTAL_VERTICES -= sceneArray[2].TOTAL_VERTICES;
+        SCENES_LOADED_VERTICES -= sceneArray[2].LOADED_VERTICES;
         sceneArray[2].isLoaded = false;
         sceneArray[2].isUnloading = true;
 
@@ -374,6 +383,8 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[3].id = SceneID::NOT_SET;
         sceneArray[3].TOTAL_VERTICES = 0;
         sceneArray[3].LOADED_VERTICES = 0;
+        SCENES_TOTAL_VERTICES -= sceneArray[3].TOTAL_VERTICES;
+        SCENES_LOADED_VERTICES -= sceneArray[3].LOADED_VERTICES;
         sceneArray[3].isLoaded = false;
         sceneArray[3].isUnloading = true;
 
@@ -391,6 +402,8 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[4].id = SceneID::NOT_SET;
         sceneArray[4].TOTAL_VERTICES = 0;
         sceneArray[4].LOADED_VERTICES = 0;
+        SCENES_TOTAL_VERTICES -= sceneArray[4].TOTAL_VERTICES;
+        SCENES_LOADED_VERTICES -= sceneArray[4].LOADED_VERTICES;
         sceneArray[4].isLoaded = false;
         sceneArray[4].isUnloading = true;
 

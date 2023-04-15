@@ -13,6 +13,7 @@ public:
 	bool isEnabled[5] = { 0,0,0,0,0 };
 	bool isAllEnabled = 0;
 	float progress[5] = { 0,0,0,0,0 };
+	float progressSummary = 0;
 
 };
 

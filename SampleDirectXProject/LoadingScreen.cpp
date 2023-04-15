@@ -18,9 +18,15 @@ LoadingScreen::~LoadingScreen()
 void LoadingScreen::DrawUI()
 {
 
-	ImGui::Begin("Loading Menu", &isActive, ImGuiWindowFlags_AlwaysAutoResize);
+	ImGui::Begin("Loading Menu", &isActive, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
 	ImGui::Text("Summary Loading Progress");
-	ImGui::SliderFloat(("All Scene"), &progress[0], 0, 100);
+	progressSummary = ((float)(SceneManager::Get()->SCENES_LOADED_VERTICES)) / ((float)(SceneManager::Get()->SCENES_TOTAL_VERTICES));
+	if (std::isnan(progressSummary))
+		progressSummary = 0;
+
+	progressSummary *= 100;
+
+	ImGui::SliderFloat("Loading Summary", &progressSummary, 0, 100);
 	ImGui::SameLine();
 	if (ImGui::Button("Load All"))
 	{
