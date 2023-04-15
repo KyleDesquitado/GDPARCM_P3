@@ -117,7 +117,7 @@ void MenuBar::DrawUI()
                 }
                 if (ImGui::MenuItem("UnloadSceneA"))
                 {
-                    SceneManager::Get()->UnloadScene(SceneManager::Get()->A);
+                    SceneManager::Get()->ResetScene(SceneManager::Get()->A);
                 }
 
 

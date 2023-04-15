@@ -54,6 +54,8 @@ public:
 	void CreateScene5ObjSet();
 	void CreateObjectFromFile(std::string name, PrimitiveType type, SimpleMath::Vector3 position, SimpleMath::Vector3 rotation, SimpleMath::Vector3 scale, bool hasPhysics);
 
+	void DestroyObject(GameObject* _obj);
+
 public:
 	void SaveEditStates();
 	void RestoreEditStates();

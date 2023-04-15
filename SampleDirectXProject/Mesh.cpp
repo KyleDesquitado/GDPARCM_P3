@@ -74,7 +74,6 @@ Mesh::Mesh(const wchar_t* full_path, MeshLoaderThread* listener) : Resource(full
 				{
 					vertexBuffer = nullptr;
 					indexBuffer = nullptr;
-					SceneManager::Get()->ResetScene(listener->sceneType);
 					return;
 				}
 				tinyobj::index_t index = shapes[s].mesh.indices[index_offset + v];

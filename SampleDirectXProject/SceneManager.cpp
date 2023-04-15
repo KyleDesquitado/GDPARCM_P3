@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include "MeshUtils.h"
 #include "GraphicsEngine.h"
+#include "GameObjectManager.h"
 
 SceneManager* SceneManager::instance = nullptr;
 const std::string NAME_TEAPOT = "Teapot";
@@ -81,18 +82,24 @@ void SceneManager::LoadAllScenes()
         // add all total vertices of listed model in [SECOND]
         for (int j = 0; j < sceneArray[i].modelInfoList.size(); j++)
         {
-            sceneArray[i].TOTAL_VERTICES +=sceneArray[i].modelInfoList[j].second;
+            if (sceneArray[i].loadState == LoadState::isUnloaded);
+                sceneArray[i].TOTAL_VERTICES +=sceneArray[i].modelInfoList[j].second;
         }
     }    
 
     for (int i = 0; i < 5; i++)
     {
-        instance->LoadScene((SceneID)i);
-        // create mesh from the path of the models [FIRST]
-        for (int j = 0; j < sceneArray[i].modelInfoList.size(); j++)
+        if (instance->sceneArray[i].loadState == isUnloaded)
         {
-            GraphicsEngine::get()->getMeshManager()->CreateMesh(sceneArray[i].modelInfoList[j].first, " ", sceneArray[i].id);
+            instance->LoadScene((SceneID)i);
+            // create mesh from the path of the models [FIRST]
+            for (int j = 0; j < sceneArray[i].modelInfoList.size(); j++)
+            {
+                if (sceneArray[i].loadState == LoadState::isUnloaded);
+                    GraphicsEngine::get()->getMeshManager()->CreateMesh(sceneArray[i].modelInfoList[j].first, " ", sceneArray[i].id);
+            }
         }
+        
     }
 
    
@@ -118,11 +125,66 @@ void SceneManager::LoadScene(SceneID scene)
 {
     switch (scene)
     {
-    case A:instance->sceneArray[0].loadState = isLoading; break;
-    case B:instance->sceneArray[1].loadState = isLoading; break;
-    case C:instance->sceneArray[2].loadState = isLoading; break;
-    case D:instance->sceneArray[3].loadState = isLoading; break;
-    case E:instance->sceneArray[4].loadState = isLoading; break;
+    case A:
+    {
+        sceneArray[0].isLoaded = false;
+        sceneArray[0].loadState = LoadState::isUnloaded;
+        sceneArray[0].id = SceneID::A;
+        sceneArray[0].TOTAL_VERTICES = 0;
+        sceneArray[0].LOADED_VERTICES = 0;
+        sceneArray[0].isLoaded = false;
+        sceneArray[0].isUnloading = false;
+    }
+
+    break;
+    case B:
+    {
+        sceneArray[1].isLoaded = false;
+        sceneArray[1].loadState = LoadState::isUnloaded;
+        sceneArray[1].id = SceneID:: B;
+        sceneArray[1].TOTAL_VERTICES = 0;
+        sceneArray[1].LOADED_VERTICES = 0;
+        sceneArray[1].isLoaded = false;
+        sceneArray[1].isUnloading = false;
+    }
+
+    break;
+    case C:
+    {
+        sceneArray[2].isLoaded = false;
+        sceneArray[2].loadState = LoadState::isUnloaded;
+        sceneArray[2].id = SceneID::C;
+        sceneArray[2].TOTAL_VERTICES = 0;
+        sceneArray[2].LOADED_VERTICES = 0;
+        sceneArray[2].isLoaded = false;
+        sceneArray[2].isUnloading = false;
+    }
+
+    break;
+    case D:
+    {
+        sceneArray[3].isLoaded = false;
+        sceneArray[3].loadState = LoadState::isUnloaded;
+        sceneArray[3].id = SceneID::D;
+        sceneArray[3].TOTAL_VERTICES = 0;
+        sceneArray[3].LOADED_VERTICES = 0;
+        sceneArray[3].isLoaded = false;
+        sceneArray[3].isUnloading = false;
+    }
+
+    break;
+    case E:
+    {
+        sceneArray[4].isLoaded = false;
+        sceneArray[4].loadState = LoadState::isUnloaded;
+        sceneArray[4].id = SceneID::E;
+        sceneArray[4].TOTAL_VERTICES = 0;
+        sceneArray[4].LOADED_VERTICES = 0;
+        sceneArray[4].isLoaded = false;
+        sceneArray[4].isUnloading = false;
+    }
+
+    break;
     }
 }
 
@@ -185,6 +247,21 @@ void SceneManager::AddModelToScene(SceneID scene, GameObject* obj)
     sceneInstance->sceneGameObjectList.push_back(obj);
 }
 
+void SceneManager::SetSceneState(SceneID scene, LoadState state)
+{
+    Scene* sceneInstance = nullptr;
+    switch (scene)
+    {
+    case A:sceneInstance = &(instance->sceneArray[0]); break;
+    case B:sceneInstance = &(instance->sceneArray[1]); break;
+    case C:sceneInstance = &(instance->sceneArray[2]); break;
+    case D:sceneInstance = &(instance->sceneArray[3]); break;
+    case E:sceneInstance = &(instance->sceneArray[4]); break;
+    }
+
+    sceneInstance->loadState = state;
+}
+
 void SceneManager::ResetScene(SceneID scene)
 {
     switch (scene)
@@ -197,8 +274,20 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[0].TOTAL_VERTICES = 0;
         sceneArray[0].LOADED_VERTICES = 0;
         sceneArray[0].isLoaded = false;
-        sceneArray[0].isUnloading = false;
-        //sceneArray[0].modelInfoList.clear();
+        sceneArray[0].isUnloading = true;
+        for (int i = 0; i < sceneArray[0].sceneGameObjectList.size(); i++)
+        {
+            GameObjectManager::Get()->DestroyObject(sceneArray[0].sceneGameObjectList[i]);
+        }
+        sceneArray[0].sceneGameObjectList.clear();
+
+        for (int i = 0; i < sceneArray[0].modelInfoList.size(); i++)
+        {
+            delete(&(sceneArray[0].modelInfoList[i]));
+        }
+
+        sceneArray[0].modelInfoList.clear();
+
     }
     break;
     case B:
@@ -209,7 +298,19 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[1].TOTAL_VERTICES = 0;
         sceneArray[1].LOADED_VERTICES = 0;
         sceneArray[1].isLoaded = false;
-        sceneArray[1].isUnloading = false;
+        sceneArray[1].isUnloading = true;
+        for (int i = 0; i < sceneArray[0].sceneGameObjectList.size(); i++)
+        {
+            GameObjectManager::Get()->DestroyObject(sceneArray[1].sceneGameObjectList[i]);
+        }
+        sceneArray[1].sceneGameObjectList.clear();
+
+        for (int i = 0; i < sceneArray[1].modelInfoList.size(); i++)
+        {
+            delete(&(sceneArray[1].modelInfoList[i]));
+        }
+
+        sceneArray[1].modelInfoList.clear();
     }
     break;
     case C:
@@ -220,7 +321,20 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[2].TOTAL_VERTICES = 0;
         sceneArray[2].LOADED_VERTICES = 0;
         sceneArray[2].isLoaded = false;
-        sceneArray[2].isUnloading = false;
+        sceneArray[2].isUnloading = true;
+
+        for (int i = 0; i < sceneArray[2].sceneGameObjectList.size(); i++)
+        {
+            GameObjectManager::Get()->DestroyObject(sceneArray[2].sceneGameObjectList[i]);
+        }
+        sceneArray[0].sceneGameObjectList.clear();
+
+        for (int i = 0; i < sceneArray[2].modelInfoList.size(); i++)
+        {
+            delete(&(sceneArray[2].modelInfoList[i]));
+        }
+
+        sceneArray[2].modelInfoList.clear();
     }
     break;
     case D:
@@ -231,7 +345,20 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[3].TOTAL_VERTICES = 0;
         sceneArray[3].LOADED_VERTICES = 0;
         sceneArray[3].isLoaded = false;
-        sceneArray[3].isUnloading = false;
+        sceneArray[3].isUnloading = true;
+
+        for (int i = 0; i < sceneArray[3].sceneGameObjectList.size(); i++)
+        {
+            GameObjectManager::Get()->DestroyObject(sceneArray[3].sceneGameObjectList[i]);
+        }
+        sceneArray[0].sceneGameObjectList.clear();
+
+        for (int i = 0; i < sceneArray[3].modelInfoList.size(); i++)
+        {
+            delete(&(sceneArray[3].modelInfoList[i]));
+        }
+
+        sceneArray[3].modelInfoList.clear();
     }
     break;
     case E:
@@ -242,9 +369,30 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[4].TOTAL_VERTICES = 0;
         sceneArray[4].LOADED_VERTICES = 0;
         sceneArray[4].isLoaded = false;
-        sceneArray[4].isUnloading = false;
+        sceneArray[4].isUnloading = true;
+
+        for (int i = 0; i < sceneArray[4].sceneGameObjectList.size(); i++)
+        {
+            GameObjectManager::Get()->DestroyObject(sceneArray[4].sceneGameObjectList[i]);
+        }
+        sceneArray[0].sceneGameObjectList.clear();
+
+        for (int i = 0; i < sceneArray[4].modelInfoList.size(); i++)
+        {
+            delete(&(sceneArray[4].modelInfoList[i]));
+        }
+
+        sceneArray[4].modelInfoList.clear();
     }
     break;
+    }
+}
+
+void SceneManager::ResetAll()
+{
+    for (int i = 0; i < 5; i++)
+    {
+        ResetScene((SceneID)i);
     }
 }
 

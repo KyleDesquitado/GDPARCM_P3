@@ -16,6 +16,9 @@ MeshLoaderThread::MeshLoaderThread(const wchar_t* file_path, std::string _name, 
 
 void MeshLoaderThread::onStartTask()
 {
+	if (SceneManager::Get()->getScene(sceneType).loadState == SceneManager::LoadState::isUnloaded)
+		SceneManager::Get()->SetSceneState(sceneType, SceneManager::LoadState::isLoading);
+		
 	std:: cout << "StartThread"<< std::to_string(sceneType)<< std::endl;
 	isRunning = true;
 	try
@@ -37,6 +40,10 @@ void MeshLoaderThread::onFinishedExecution()
 		std::wcout << "Loaded mesh: " << path << std::endl;
 		//memcpy((*meshMap)[name], mesh, sizeof(mesh));
 		GameObjectManager::Get()->CreateMesh(mesh, this->sceneType);
+		if (SceneManager::Get()->getScene(sceneType).sceneGameObjectList.size() >= SceneManager::Get()->getScene(sceneType).modelInfoList.size())
+		{
+			SceneManager::Get()->SetSceneState(sceneType, SceneManager::LoadState::isLoaded);
+		}
 	}
 }
 

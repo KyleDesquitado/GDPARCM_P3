@@ -61,6 +61,7 @@ public:
     Scene getScene(SceneID scene);
     void EnableSceneModels(bool isEnabled, SceneID scene);
     void AddModelToScene(SceneID scene, GameObject* obj);
+    void SetSceneState(SceneID scene, LoadState state);
 
 public:
     void ResetScene(SceneID scene);
