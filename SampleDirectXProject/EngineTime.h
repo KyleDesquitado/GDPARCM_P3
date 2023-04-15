@@ -10,6 +10,7 @@ class EngineTime
 public:
 	static void initialize();
 	static double getDeltaTime();
+	static float getFPS();
 
 private:
 	EngineTime();
@@ -26,6 +27,7 @@ private:
 
 	static void LogFrameStart();
 	static void LogFrameEnd();
+	float fps = 0.0f;
 
 	friend class Window;
 };
