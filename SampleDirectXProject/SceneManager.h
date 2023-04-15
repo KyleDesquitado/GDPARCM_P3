@@ -1,10 +1,15 @@
 #pragma once
 #include <vector>
 #include <array>
+#include <functional>
 #include "GameObject.h"
 #include "IETSemaphore.h"
+#include "SimpleMath.h"
+
 
 typedef std::pair<const wchar_t*, int> ModelInfoPair;
+using namespace DirectX;
+
 class SceneManager
 {
 private:
@@ -15,6 +20,7 @@ private:
 public:
     SceneManager();
     IETSemaphore* mutex[5];
+    SimpleMath::Vector3 positions[5][4];
 
 public:
     static void Initialize();
@@ -64,6 +70,7 @@ public:
     Scene getScene(SceneID scene);
     void EnableSceneModels(bool isEnabled, SceneID scene);
     void AddModelToScene(SceneID scene, GameObject* obj);
+    void SetSceneObjPosition(SceneID scene, GameObject* obj, SimpleMath::Vector3 position);
     void SetSceneState(SceneID scene, LoadState state);
 
 public:
