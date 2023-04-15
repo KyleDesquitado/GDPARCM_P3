@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <array>
+#include "GameObject.h"
 
 typedef std::pair<const wchar_t*, int> ModelInfoPair;
 class SceneManager
@@ -43,7 +44,8 @@ public:
         int LOADED_VERTICES = 0;
         bool isLoaded = false;
         bool isUnloading = false;
-        std::vector<ModelInfoPair> modelList;
+        std::vector<ModelInfoPair> modelInfoList;
+        std::vector <GameObject*>sceneGameObjectList();
         //std::unordered_map<ModelInfoPair, Mesh*> meshMap;
 	};
 

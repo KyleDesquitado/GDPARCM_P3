@@ -6,7 +6,6 @@
 
 #include "GraphicsEngine.h"
 #include "TextureManager.h"
-#include "MeshManager.h"
 #include "TransformComponent.h"
 #include "PhysicsComponent.h"
 #include "EngineBackend.h"
@@ -475,16 +474,52 @@ void GameObjectManager::CreateLucy()
     gameObjectList.push_back(obj);
     gameObjectMap.emplace(obj->GetName(), obj);
     SelectGameObject(obj);
+
+}
+
+GameObject* GameObjectManager::CreateMesh(Mesh* mesh, SceneManager::SceneID id)
+{
+    GameObject* obj = GameObject::Instantiate("model");
+
+    Mesh* mesh = mesh;
+
+    MeshComponent* meshComponent = new MeshComponent();
+    obj->AttachComponent(meshComponent);
+    meshComponent->SetMesh(mesh);
+
+    int i = 0;
+
+    for (const auto& pair : gameObjectMap)
+    {
+        if (pair.first.find("model") != std::string::npos)
+        {
+            i++;
+        }
+    }
+
+    if (i > 0)
+    {
+        obj->SetName("model(" + std::to_string(i) + ')');
+    }
+
+
+    gameObjectList.push_back(obj);
+    gameObjectMap.emplace(obj->GetName(), obj);
+
+    // add to the model list in scene
+    SceneManager::Get()->getScene(id).sceneGameObjectList
+        //SelectGameObject(obj);
+
 }
 
 void GameObjectManager::CreateScene1ObjSet()
 {
-    for (int i = 0; i < SceneManager::Get()->getScene(SceneManager::A).modelList.size(); i++)
+    for (int i = 0; i < SceneManager::Get()->getScene(SceneManager::A).modelInfoList.size(); i++)
     {
         GameObject* obj = GameObject::Instantiate("Scene1Obj");
 
-        std::wcout << SceneManager::Get()->getScene(SceneManager::A).modelList[i].first << std::endl;
-        Mesh* mesh = (*(GraphicsEngine::get()->getMeshManager()->meshMap))[SceneManager::Get()->getScene(SceneManager::A).modelList[i].first];
+        std::wcout << SceneManager::Get()->getScene(SceneManager::A).modelInfoList[i].first << std::endl;
+        Mesh* mesh = (*(GraphicsEngine::get()->getMeshManager()->meshMap))[SceneManager::Get()->getScene(SceneManager::A).modelInfoList[i].first];
 
         //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\statue.obj");
         //Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_LUCY];
@@ -516,12 +551,12 @@ void GameObjectManager::CreateScene1ObjSet()
 
 void GameObjectManager::CreateScene2ObjSet()
 {
-    for (int i = 0; i < SceneManager::Get()->getScene(SceneManager::B).modelList.size(); i++)
+    for (int i = 0; i < SceneManager::Get()->getScene(SceneManager::B).modelInfoList.size(); i++)
     {
         GameObject* obj = GameObject::Instantiate("Scene2Obj");
 
-        std::wcout << SceneManager::Get()->getScene(SceneManager::B).modelList[i].first << std::endl;
-        Mesh* mesh = (*(GraphicsEngine::get()->getMeshManager()->meshMap))[SceneManager::Get()->getScene(SceneManager::B).modelList[i].first];
+        std::wcout << SceneManager::Get()->getScene(SceneManager::B).modelInfoList[i].first << std::endl;
+        Mesh* mesh = (*(GraphicsEngine::get()->getMeshManager()->meshMap))[SceneManager::Get()->getScene(SceneManager::B).modelInfoList[i].first];
 
         //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\statue.obj");
         //Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_LUCY];
@@ -553,12 +588,12 @@ void GameObjectManager::CreateScene2ObjSet()
 
 void GameObjectManager::CreateScene3ObjSet()
 {
-    for (int i = 0; i < SceneManager::Get()->getScene(SceneManager::C).modelList.size(); i++)
+    for (int i = 0; i < SceneManager::Get()->getScene(SceneManager::C).modelInfoList.size(); i++)
     {
         GameObject* obj = GameObject::Instantiate(NAME_LUCY);
 
-        std::wcout << SceneManager::Get()->getScene(SceneManager::C).modelList[i].first << std::endl;
-        Mesh* mesh = (*(GraphicsEngine::get()->getMeshManager()->meshMap))[SceneManager::Get()->getScene(SceneManager::C).modelList[i].first];
+        std::wcout << SceneManager::Get()->getScene(SceneManager::C).modelInfoList[i].first << std::endl;
+        Mesh* mesh = (*(GraphicsEngine::get()->getMeshManager()->meshMap))[SceneManager::Get()->getScene(SceneManager::C).modelInfoList[i].first];
 
         //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\statue.obj");
         //Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_LUCY];
@@ -590,12 +625,12 @@ void GameObjectManager::CreateScene3ObjSet()
 
 void GameObjectManager::CreateScene4ObjSet()
 {
-    for (int i = 0; i < SceneManager::Get()->getScene(SceneManager::D).modelList.size(); i++)
+    for (int i = 0; i < SceneManager::Get()->getScene(SceneManager::D).modelInfoList.size(); i++)
     {
         GameObject* obj = GameObject::Instantiate(NAME_LUCY);
 
-        std::wcout << SceneManager::Get()->getScene(SceneManager::D).modelList[i].first << std::endl;
-        Mesh* mesh = (*(GraphicsEngine::get()->getMeshManager()->meshMap))[SceneManager::Get()->getScene(SceneManager::D).modelList[i].first];
+        std::wcout << SceneManager::Get()->getScene(SceneManager::D).modelInfoList[i].first << std::endl;
+        Mesh* mesh = (*(GraphicsEngine::get()->getMeshManager()->meshMap))[SceneManager::Get()->getScene(SceneManager::D).modelInfoList[i].first];
 
         //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\statue.obj");
         //Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_LUCY];
@@ -627,12 +662,12 @@ void GameObjectManager::CreateScene4ObjSet()
 
 void GameObjectManager::CreateScene5ObjSet()
 {
-    for (int i = 0; i < SceneManager::Get()->getScene(SceneManager::E).modelList.size(); i++)
+    for (int i = 0; i < SceneManager::Get()->getScene(SceneManager::E).modelInfoList.size(); i++)
     {
         GameObject* obj = GameObject::Instantiate(NAME_LUCY);
 
-        std::wcout << SceneManager::Get()->getScene(SceneManager::E).modelList[i].first << std::endl;
-        Mesh* mesh = (*(GraphicsEngine::get()->getMeshManager()->meshMap))[SceneManager::Get()->getScene(SceneManager::E).modelList[i].first];
+        std::wcout << SceneManager::Get()->getScene(SceneManager::E).modelInfoList[i].first << std::endl;
+        Mesh* mesh = (*(GraphicsEngine::get()->getMeshManager()->meshMap))[SceneManager::Get()->getScene(SceneManager::E).modelInfoList[i].first];
 
         //Mesh* mesh = GraphicsEngine::get()->getMeshManager()->CreateMeshFromFile(L"Assets\\Meshes\\statue.obj");
         //Mesh* mesh = (*GraphicsEngine::get()->getMeshManager()->meshMap)[NAME_LUCY];

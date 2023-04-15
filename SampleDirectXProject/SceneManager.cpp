@@ -51,37 +51,37 @@ void SceneManager::LoadAllScenes()
 
 #pragma region Manual
     //populate the model list of id from the available mesh list
-    //SceneA.modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    ////SceneA.modelList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
+    //SceneA.modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    ////SceneA.modelInfoList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
 
     //// add all total vertices of listed model in id [SECOND]
-    //for (int i = 0; i < SceneA.modelList.size(); i++)
+    //for (int i = 0; i < SceneA.modelInfoList.size(); i++)
     //{
-    //    SceneA.TOTAL_VERTICES += SceneA.modelList[i].second;
+    //    SceneA.TOTAL_VERTICES += SceneA.modelInfoList[i].second;
     //}
 
     //// create mesh from the path of the models [FIRST]
-    //for (int i = 0; i < SceneA.modelList.size(); i++)
+    //for (int i = 0; i < SceneA.modelInfoList.size(); i++)
     //{
-    //    GraphicsEngine::get()->getMeshManager()->CreateMesh(SceneA.modelList[i].first, " ", SceneA.id);
+    //    GraphicsEngine::get()->getMeshManager()->CreateMesh(SceneA.modelInfoList[i].first, " ", SceneA.id);
     //}
 #pragma endregion
 
 
     //populate the model list of id from the available mesh list
-    sceneArray[0].modelList.push_back(std::make_pair(availableMeshList[0].first, availableMeshList[0].second));
-    sceneArray[1].modelList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
-    sceneArray[2].modelList.push_back(std::make_pair(availableMeshList[2].first, availableMeshList[2].second));
-    sceneArray[3].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    sceneArray[4].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    //SceneA.modelList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
+    sceneArray[0].modelInfoList.push_back(std::make_pair(availableMeshList[0].first, availableMeshList[0].second));
+    sceneArray[1].modelInfoList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
+    sceneArray[2].modelInfoList.push_back(std::make_pair(availableMeshList[2].first, availableMeshList[2].second));
+    sceneArray[3].modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    sceneArray[4].modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    //SceneA.modelInfoList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
 
     for (int i = 0; i < 5; i++)
     {
         // add all total vertices of listed model in [SECOND]
-        for (int j = 0; j < sceneArray[i].modelList.size(); j++)
+        for (int j = 0; j < sceneArray[i].modelInfoList.size(); j++)
         {
-            sceneArray[i].TOTAL_VERTICES +=sceneArray[i].modelList[j].second;
+            sceneArray[i].TOTAL_VERTICES +=sceneArray[i].modelInfoList[j].second;
         }
     }    
 
@@ -89,9 +89,9 @@ void SceneManager::LoadAllScenes()
     {
         instance->LoadScene((SceneID)i);
         // create mesh from the path of the models [FIRST]
-        for (int j = 0; j < sceneArray[i].modelList.size(); j++)
+        for (int j = 0; j < sceneArray[i].modelInfoList.size(); j++)
         {
-            GraphicsEngine::get()->getMeshManager()->CreateMesh(sceneArray[i].modelList[j].first, " ", sceneArray[i].id);
+            GraphicsEngine::get()->getMeshManager()->CreateMesh(sceneArray[i].modelInfoList[j].first, " ", sceneArray[i].id);
         }
     }
 
@@ -163,7 +163,7 @@ void SceneManager::ResetScene(SceneID scene)
         sceneArray[0].LOADED_VERTICES = 0;
         sceneArray[0].isLoaded = false;
         sceneArray[0].isUnloading = false;
-        //sceneArray[0].modelList.clear();
+        //sceneArray[0].modelInfoList.clear();
     }
     break;
     case B:

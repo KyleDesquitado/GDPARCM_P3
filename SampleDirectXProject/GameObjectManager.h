@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "SimpleMath.h"
 #include <reactphysics3d/reactphysics3d.h>
+#include "SceneManager.h"
+#include "MeshManager.h"
 
 using namespace reactphysics3d;
 using namespace DirectX;
@@ -44,6 +46,7 @@ public:
 	void ApplyEditorAction(class EditorAction* action);
 
 public:
+	GameObject* CreateMesh(Mesh* mesh, SceneManager::SceneID id);
 	void CreateScene1ObjSet();
 	void CreateScene2ObjSet();
 	void CreateScene3ObjSet();
