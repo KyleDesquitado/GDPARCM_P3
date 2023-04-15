@@ -3,10 +3,9 @@
 #include <array>
 #include <functional>
 #include "GameObject.h"
-#include "IETSemaphore.h"
 #include "SimpleMath.h"
-
-
+#include "IETSemaphore.h"
+using namespace DirectX;
 typedef std::pair<const wchar_t*, int> ModelInfoPair;
 using namespace DirectX;
 
@@ -16,12 +15,11 @@ private:
     static SceneManager* instance;
    /* std::vector <const wchar_t*> availableModelPathList;*/
     std::vector<ModelInfoPair> availableMeshList;
-
+    
 public:
     SceneManager();
     IETSemaphore* mutex[5];
     SimpleMath::Vector3 positions[5][4];
-
 public:
     static void Initialize();
     static SceneManager* Get();
