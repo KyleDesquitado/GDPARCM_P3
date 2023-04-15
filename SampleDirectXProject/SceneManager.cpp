@@ -2,6 +2,7 @@
 #include "MeshUtils.h"
 #include "GraphicsEngine.h"
 #include "GameObjectManager.h"
+#include "TransformComponent.h"
 
 SceneManager* SceneManager::instance = nullptr;
 const std::string NAME_TEAPOT = "Teapot";
@@ -58,6 +59,31 @@ void SceneManager::Initialize()
     instance->sceneArray[3].modelInfoList.push_back(std::make_pair(instance->availableMeshList[3].first, instance->availableMeshList[3].second));
     //[4].modelInfoList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
     //SceneA.modelInfoList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
+
+    instance->positions[0][0] = SimpleMath::Vector3(-1.5f, 2.0f, -1.0f);
+    instance->positions[0][1] = SimpleMath::Vector3(-0.5f, 2.0f, -1.0f);
+    instance->positions[0][2] = SimpleMath::Vector3(0.5f, 2.0f, -1.0f);
+    instance->positions[0][3] = SimpleMath::Vector3(1.5f, 2.0f, -1.0f);
+
+    instance->positions[1][0] = SimpleMath::Vector3(-1.5f, 1.0f, -2.0f);
+    instance->positions[1][1] = SimpleMath::Vector3(-0.5f, 1.0f, -2.0f);
+    instance->positions[1][2] = SimpleMath::Vector3(0.5f, 1.0f, -2.0f);
+    instance->positions[1][3] = SimpleMath::Vector3(1.5f, 1.0f, -2.0f);
+
+    instance->positions[2][0] = SimpleMath::Vector3(-1.5f, 0.0f, -3.0f);
+    instance->positions[2][1] = SimpleMath::Vector3(-0.5f, 0.0f, -3.0f);
+    instance->positions[2][2] = SimpleMath::Vector3(0.5f, 0.0f, -3.0f);
+    instance->positions[2][3] = SimpleMath::Vector3(1.5f, 0.0f, -3.0f);
+
+    instance->positions[3][0] = SimpleMath::Vector3(-1.5f, -1.0f, -4.0f);
+    instance->positions[3][1] = SimpleMath::Vector3(-0.5f, -1.0f, -4.0f);
+    instance->positions[3][2] = SimpleMath::Vector3(0.5f, -1.0f, -4.0f);
+    instance->positions[3][3] = SimpleMath::Vector3(1.5f, -1.0f, -4.0f);
+
+    instance->positions[4][0] = SimpleMath::Vector3(-1.5f, -1.0f, -5.0f);
+    instance->positions[4][1] = SimpleMath::Vector3(-0.5f, -1.0f, -5.0f);
+    instance->positions[4][2] = SimpleMath::Vector3(0.5f, -1.0f, -5.0f);
+    instance->positions[4][3] = SimpleMath::Vector3(1.5f, -1.0f, -5.0f);
 }
 
 SceneManager* SceneManager::Get()
@@ -121,6 +147,17 @@ void SceneManager::LoadScene(SceneID scene)
     
 
     
+}
+
+void SceneManager::SetSceneObjPosition(SceneID scene, GameObject* obj, SimpleMath::Vector3 position)
+{
+    for (int i = 0; i < sceneArray[(int)scene].sceneGameObjectList.size(); i++)
+    {
+        if (obj == sceneArray[(int)scene].sceneGameObjectList[i])
+        {
+            sceneArray[(int)scene].sceneGameObjectList[i]->GetTransform()->SetPosition(position);
+        }
+    }
 }
 
 void SceneManager::UpdateSceneState(SceneID scene)

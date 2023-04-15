@@ -39,6 +39,10 @@ void MeshLoaderThread::onFinishedExecution()
 		std::wcout << "Loaded mesh: " << path << std::endl;
 		//memcpy((*meshMap)[name], mesh, sizeof(mesh));
 		GameObjectManager::Get()->CreateMesh(mesh, this->sceneType);
+		if (SceneManager::Get()->getScene(sceneType).sceneGameObjectList.size() <= 4)
+		{
+			SceneManager::Get()->SetSceneObjPosition(sceneType, SceneManager::Get()->getScene(sceneType).sceneGameObjectList[SceneManager::Get()->getScene(sceneType).sceneGameObjectList.size() - 1], SceneManager::Get()->positions[(int)sceneType][SceneManager::Get()->getScene(sceneType).sceneGameObjectList.size() - 1]);
+		}
 		if (SceneManager::Get()->getScene(sceneType).sceneGameObjectList.size() >= SceneManager::Get()->getScene(sceneType).modelInfoList.size())
 		{
 			SceneManager::Get()->SetSceneState(sceneType, SceneManager::LoadState::isLoaded);
