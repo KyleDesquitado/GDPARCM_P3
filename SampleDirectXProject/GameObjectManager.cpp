@@ -506,7 +506,7 @@ void GameObjectManager::CreateMesh(Mesh* mesh, SceneManager::SceneID id)
     gameObjectMap.emplace(obj->GetName(), obj);
 
     // add to the model list in scene
-    obj->SetEnable(false);
+    obj->SetEnable(SceneManager::Get()->getScene(id).isActive);
     SceneManager::Get()->AddModelToScene(id, obj);
         //SelectGameObject(obj);
 

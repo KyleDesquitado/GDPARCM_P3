@@ -369,6 +369,22 @@ void SceneManager::ResetAll()
     }
 }
 
+void SceneManager::EnableScene(bool flag, SceneID id)
+{
+    Scene* sceneInstance = nullptr;
+    switch (id)
+    {
+    case A:sceneInstance = &(instance->sceneArray[0]); break;
+    case B:sceneInstance = &(instance->sceneArray[1]); break;
+    case C:sceneInstance = &(instance->sceneArray[2]); break;
+    case D:sceneInstance = &(instance->sceneArray[3]); break;
+    case E:sceneInstance = &(instance->sceneArray[4]); break;
+    }
+
+    sceneInstance->isActive = flag;
+    EnableSceneModels(flag, id);
+}
+
 
 
 

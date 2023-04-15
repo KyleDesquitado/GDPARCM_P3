@@ -38,6 +38,7 @@ public :
 public:
 	struct Scene
 	{
+        bool isActive = false;
         LoadState loadState = LoadState::isUnloaded;
         SceneID id = SceneID::NOT_SET;
         int TOTAL_VERTICES = 0;
@@ -67,4 +68,6 @@ public:
     void LoadScene(SceneID scene);
     void ResetScene(SceneID scene);
     void ResetAll();
+    void EnableScene(bool flag, SceneID id);
+
 };

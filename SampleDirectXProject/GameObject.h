@@ -51,7 +51,7 @@ protected:
 	TransformComponent* transform = nullptr;
 	EditorAction* lastEditState = nullptr;
 	PrimitiveType objectType;
-	bool isEnable = true;
+	bool isEnable = false;
 
 public:
 	TransformComponent* GetTransform() const;

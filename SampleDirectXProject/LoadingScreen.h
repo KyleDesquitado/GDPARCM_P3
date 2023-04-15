@@ -11,6 +11,7 @@ public:
 	~LoadingScreen();
 	void DrawUI() override;
 	bool isEnabled[5] = { 0,0,0,0,0 };
+	bool isAllEnabled = 0;
 	float progress[5] = { 0,0,0,0,0 };
 
 };

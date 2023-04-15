@@ -19,7 +19,7 @@ void LoadingScreen::DrawUI()
 
 	ImGui::Begin("Loading Menu", &isActive, ImGuiWindowFlags_AlwaysAutoResize);
 	ImGui::Text("Summary Loading Progress");
-	ImGui::SliderFloat(("Selected Scene"), &progress[0], 0, 100);
+	ImGui::SliderFloat(("All Scene"), &progress[0], 0, 100);
 	ImGui::SameLine();
 	if (ImGui::Button("Load All"))
 	{
@@ -29,6 +29,15 @@ void LoadingScreen::DrawUI()
 	if (ImGui::Button("Unload All"))
 	{
 		SceneManager::Get()->ResetAll();
+	}
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Enable All", &isAllEnabled))
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			SceneManager::Get()->EnableScene(isAllEnabled, (SceneManager::SceneID)i);
+			isEnabled[i] = isAllEnabled;
+		}
 	}
 
 	ImGui::Separator();
@@ -49,12 +58,12 @@ void LoadingScreen::DrawUI()
 		if (std::isnan(progress[i]))
 			progress[i] = 0;
 
-		progress[i] * 100;
+		progress[i] *= 100;
 
 		ImGui::SliderFloat((name + id + loading).c_str(), &progress[i], 0, 100);
 		ImGui::SameLine();
 
-		string Toggle = "Toggle ";
+		string Toggle = "Enable ";
 		string unload = "Unload ";
 		string load = "Load ";
 		if (ImGui::Button((load + name + id).c_str()))
@@ -70,8 +79,12 @@ void LoadingScreen::DrawUI()
 		ImGui::SameLine();
 		if (ImGui::Checkbox((Toggle + name + id).c_str(),&isEnabled[i]))
 		{
+			if (!isEnabled[i])
+			{
+				isAllEnabled = false;
+			}
 			cout << "Imgui: " << isEnabled << std::endl;
-			SceneManager::Get()->EnableSceneModels(isEnabled[i], (SceneManager::SceneID)i);
+			SceneManager::Get()->EnableScene(isEnabled[i], (SceneManager::SceneID)i);
 		}
 	}
 	
