@@ -3,6 +3,7 @@
 #include "IExecutionEvent.h"
 #include "Mesh.h"
 #include <string>
+#include "GameObjectManager.h"
 MeshLoaderThread::MeshLoaderThread(const wchar_t* file_path, std::string _name, std::unordered_map<const wchar_t*, Mesh*>* _meshMap, SceneManager::SceneID scene)
 {
 	// updated attributes necessary for loading
@@ -35,6 +36,7 @@ void MeshLoaderThread::onFinishedExecution()
 		(*meshMap)[path] = mesh;
 		std::wcout << "Loaded mesh: " << path << std::endl;
 		//memcpy((*meshMap)[name], mesh, sizeof(mesh));
+		GameObjectManager::Get()->CreateMesh(mesh, );
 	}
 }
 
