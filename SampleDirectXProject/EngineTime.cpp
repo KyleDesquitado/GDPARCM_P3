@@ -31,4 +31,8 @@ void EngineTime::LogFrameEnd()
 	std::chrono::duration<double> elapsed_seconds = sharedInstance->end - sharedInstance->start;
 
 	sharedInstance->deltaTime = elapsed_seconds.count();
+	sharedInstance->fps = 1.0f / sharedInstance->deltaTime;
+
+	sharedInstance->fps = std::clamp<float>(sharedInstance->fps, 0, 60);
+	std::cout << sharedInstance->fps << std::endl;
 }
