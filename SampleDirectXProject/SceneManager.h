@@ -60,6 +60,7 @@ public:
     void UnloadScene(SceneID scene);
     Scene getScene(SceneID scene);
     void EnableSceneModels(bool isEnabled, SceneID scene);
+    void AddModelToScene(SceneID scene, GameObject* obj);
 
 public:
     void ResetScene(SceneID scene);

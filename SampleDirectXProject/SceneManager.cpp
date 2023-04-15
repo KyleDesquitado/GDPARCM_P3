@@ -170,6 +170,21 @@ void SceneManager::EnableSceneModels(bool isEnabled, SceneID scene)
     }
 }
 
+void SceneManager::AddModelToScene(SceneID scene, GameObject* obj)
+{
+    Scene* sceneInstance = nullptr;
+    switch (scene)
+    {
+    case A:sceneInstance = &(instance->sceneArray[0]); break;
+    case B:sceneInstance = &(instance->sceneArray[1]); break;
+    case C:sceneInstance = &(instance->sceneArray[2]); break;
+    case D:sceneInstance = &(instance->sceneArray[3]); break;
+    case E:sceneInstance = &(instance->sceneArray[4]); break;
+    }
+
+    sceneInstance->sceneGameObjectList.push_back(obj);
+}
+
 void SceneManager::ResetScene(SceneID scene)
 {
     switch (scene)
