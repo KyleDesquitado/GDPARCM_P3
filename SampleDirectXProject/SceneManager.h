@@ -20,6 +20,8 @@ public:
     SceneManager();
     IETSemaphore* mutex[5];
     SimpleMath::Vector3 positions[5][4];
+    int SCENES_TOTAL_VERTICES = 0;
+    int SCENES_LOADED_VERTICES = 0;
 public:
     static void Initialize();
     static SceneManager* Get();
