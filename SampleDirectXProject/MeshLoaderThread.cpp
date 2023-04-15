@@ -16,8 +16,7 @@ MeshLoaderThread::MeshLoaderThread(const wchar_t* file_path, std::string _name, 
 
 void MeshLoaderThread::onStartTask()
 {
-	if (SceneManager::Get()->getScene(sceneType).loadState == SceneManager::LoadState::isUnloaded)
-		SceneManager::Get()->SetSceneState(sceneType, SceneManager::LoadState::isLoading);
+	
 		
 	std:: cout << "StartThread"<< std::to_string(sceneType)<< std::endl;
 	isRunning = true;

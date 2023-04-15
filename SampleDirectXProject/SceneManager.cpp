@@ -61,53 +61,58 @@ SceneManager* SceneManager::Get()
 
 void SceneManager::LoadAllScenes()
 {
-    for (int i = 0; i < 5; i++)
-    {
-        // add all total vertices of listed model in [SECOND]
-        for (int j = 0; j < sceneArray[i].modelInfoList.size(); j++)
-        {
-            if (sceneArray[i].loadState == LoadState::isUnloaded);
-                sceneArray[i].TOTAL_VERTICES +=sceneArray[i].modelInfoList[j].second;
-        }
-    }    
+    //for (int i = 0; i < 5; i++)
+    //{
+    //    // add all total vertices of listed model in [SECOND]
+    //    for (int j = 0; j < sceneArray[i].modelInfoList.size(); j++)
+    //    {
+    //        if (sceneArray[i].loadState == LoadState::isUnloaded);
+    //            sceneArray[i].TOTAL_VERTICES +=sceneArray[i].modelInfoList[j].second;
+    //    }
+    //}    
+
+    //for (int i = 0; i < 5; i++)
+    //{
+    //    if (instance->sceneArray[i].loadState == isUnloaded)
+    //    {
+    //        instance->InitializeScene((SceneID)i);
+    //        // create mesh from the path of the models [FIRST]
+    //        for (int j = 0; j < sceneArray[i].modelInfoList.size(); j++)
+    //        {
+    //            if (sceneArray[i].loadState == LoadState::isUnloaded);
+    //                GraphicsEngine::get()->getMeshManager()->CreateMesh(sceneArray[i].modelInfoList[j].first, " ", sceneArray[i].id);
+    //        }
+    //    }
+    //    
+    //}
 
     for (int i = 0; i < 5; i++)
     {
-        if (instance->sceneArray[i].loadState == isUnloaded)
-        {
-            instance->InitializeScene((SceneID)i);
-            // create mesh from the path of the models [FIRST]
-            for (int j = 0; j < sceneArray[i].modelInfoList.size(); j++)
-            {
-                if (sceneArray[i].loadState == LoadState::isUnloaded);
-                    GraphicsEngine::get()->getMeshManager()->CreateMesh(sceneArray[i].modelInfoList[j].first, " ", sceneArray[i].id);
-            }
-        }
-        
-    }
+        LoadScene((SceneID)i);
+    }    
 }
 
 void SceneManager::LoadScene(SceneID scene)
 {
-    
-    // add all total vertices of listed model in [SECOND]
-    for (int j = 0; j < sceneArray[(int)scene].modelInfoList.size(); j++)
-    {
-        if (sceneArray[(int)scene].loadState == LoadState::isUnloaded);
-            sceneArray[(int)scene].TOTAL_VERTICES += sceneArray[(int)scene].modelInfoList[j].second;
-    }
-    
-
-    if (instance->sceneArray[(int)scene].loadState == isUnloaded)
+    if (instance->getScene(scene).loadState == SceneManager::LoadState::isUnloaded)
     {
         instance->InitializeScene(scene);
+        instance->SetSceneState(scene, SceneManager::LoadState::isLoading);
+        // add all total vertices of listed model in [SECOND]
+        for (int j = 0; j < sceneArray[(int)scene].modelInfoList.size(); j++)
+        {
+            sceneArray[(int)scene].TOTAL_VERTICES += sceneArray[(int)scene].modelInfoList[j].second;
+        }
+
+
+
         // create mesh from the path of the models [FIRST]
         for (int j = 0; j < sceneArray[(int)scene].modelInfoList.size(); j++)
         {
-            if (sceneArray[(int)scene].loadState == LoadState::isUnloaded);
             GraphicsEngine::get()->getMeshManager()->CreateMesh(sceneArray[(int)scene].modelInfoList[j].first, " ", sceneArray[(int)scene].id);
         }
     }
+    
 
     
 }

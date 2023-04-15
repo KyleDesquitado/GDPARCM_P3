@@ -44,6 +44,7 @@ void LoadingScreen::DrawUI()
 		//ImGui::SliderFloat("Scene 1 Loading Bar", &progress[i], 0, 100);
 
 		// min to max vertices
+		std::cout << "Loaded: " << ((float)(SceneManager::Get()->sceneArray[i].LOADED_VERTICES)) << " | " << "Total: " << (SceneManager::Get()->sceneArray[i].TOTAL_VERTICES) << std::endl;
 		progress[i] = ((float)(SceneManager::Get()->sceneArray[i].LOADED_VERTICES)) / ((float)(SceneManager::Get()->sceneArray[i].TOTAL_VERTICES));
 		if (std::isnan(progress[i]))
 			progress[i] = 0;
