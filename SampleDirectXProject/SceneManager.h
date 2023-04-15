@@ -21,12 +21,12 @@ public:
 public :
     enum SceneID
     {
-        NOT_SET = 0,
-        A = 1,
-        B = 2,
-        C = 3,
-        D = 4,
-        E = 5,
+        NOT_SET = -1,
+        A = 0,
+        B = 1,
+        C = 2,
+        D = 3,
+        E = 4,
     };
 
     enum LoadState
@@ -59,6 +59,7 @@ public:
     void LoadScene(SceneID scene);
     void UnloadScene(SceneID scene);
     Scene getScene(SceneID scene);
+    void EnableSceneModels(bool isEnabled, SceneID scene);
 
 public:
     void ResetScene(SceneID scene);

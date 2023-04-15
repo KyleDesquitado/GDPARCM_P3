@@ -10,7 +10,7 @@ public:
 	LoadingScreen();
 	~LoadingScreen();
 	void DrawUI() override;
-
+	bool isEnabled = false;
 	float progress[5] = { 0,0,0,0,0 };
 
 };

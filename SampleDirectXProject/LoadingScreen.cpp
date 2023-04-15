@@ -61,10 +61,10 @@ void LoadingScreen::DrawUI()
 
 		}
 		ImGui::SameLine();
-		bool flag =false;
-		if (ImGui::Checkbox((Toggle + name + id).c_str(),&flag))
+		if (ImGui::Checkbox((Toggle + name + id).c_str(),&isEnabled))
 		{
-
+			cout << "Imgui: " << isEnabled << std::endl;
+			SceneManager::Get()->EnableSceneModels(isEnabled, (SceneManager::SceneID)i);
 		}
 	}
 	
