@@ -727,6 +727,22 @@ void GameObjectManager::CreateObjectFromFile(std::string name, PrimitiveType typ
     }
 }
 
+
+void GameObjectManager::DestroyObject(GameObject* _obj)
+{
+    for (int i = 0; i < gameObjectList.size(); i++)
+    {
+        if (gameObjectList[i] == _obj)
+        {
+            gameObjectList.erase(gameObjectList.begin() + i);
+            delete(_obj);
+            break;
+        }
+    }
+}
+
+
+
 void GameObjectManager::SaveEditStates()
 {
     for (auto* obj : gameObjectList)
