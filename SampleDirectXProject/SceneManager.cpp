@@ -69,9 +69,9 @@ void SceneManager::LoadAllScenes()
 
 
     //populate the model list of id from the available mesh list
-    sceneArray[0].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    sceneArray[1].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
-    sceneArray[2].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
+    sceneArray[0].modelList.push_back(std::make_pair(availableMeshList[0].first, availableMeshList[0].second));
+    sceneArray[1].modelList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));
+    sceneArray[2].modelList.push_back(std::make_pair(availableMeshList[2].first, availableMeshList[2].second));
     sceneArray[3].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
     sceneArray[4].modelList.push_back(std::make_pair(availableMeshList[3].first, availableMeshList[3].second));
     //SceneA.modelList.push_back(std::make_pair(availableMeshList[1].first, availableMeshList[1].second));

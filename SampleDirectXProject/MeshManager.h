@@ -16,7 +16,7 @@ public:
 	~MeshManager();
 	Mesh* CreateMeshFromFile(const wchar_t* file_path);
 	void CreateMesh(const wchar_t* file_path, std::string name, SceneManager::SceneID scene);
-	std::unordered_map<std::string, Mesh*>* meshMap;
+	std::unordered_map<const wchar_t*, Mesh*>* meshMap;
 protected:
 	Mesh* mesh;
 

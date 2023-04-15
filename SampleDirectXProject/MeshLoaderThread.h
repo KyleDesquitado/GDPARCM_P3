@@ -8,7 +8,7 @@ class Mesh;
 class MeshLoaderThread : public IWorkerAction, public IExecutionEvent
 {
 public:
-    MeshLoaderThread(const wchar_t* file_path, std::string _name, std::unordered_map<std::string, Mesh* >* _meshMap, SceneManager::SceneID scene);
+    MeshLoaderThread(const wchar_t* file_path, std::string _name, std::unordered_map<const wchar_t*, Mesh* >* _meshMap, SceneManager::SceneID scene);
     // Inherited via IWorkerAction
     virtual void onStartTask() override;
 
@@ -22,7 +22,7 @@ private:
     Mesh* mesh;
     const wchar_t* path;
     std::string name;
-    std::unordered_map<std::string, Mesh*>* meshMap;
+    std::unordered_map<const wchar_t*, Mesh*>* meshMap;
 
 public:
     int nTotalVertices = 0;

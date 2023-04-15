@@ -1,6 +1,7 @@
 #include "LoadingScreen.h"
 #include "SceneManager.h"
 #include <string>;
+#include <cmath>
 
 LoadingScreen::LoadingScreen(): UIScreen("LoadingScreen", true)
 {
@@ -31,8 +32,11 @@ void LoadingScreen::DrawUI()
 		//ImGui::SliderFloat("Scene 1 Loading Bar", &progress[i], 0, 100);
 
 		// min to max vertices
-		progress[i] = SceneManager::Get()->sceneArray[i].LOADED_VERTICES;
-		ImGui::SliderFloat((name+id+loading).c_str(), &progress[i], 0, (float)SceneManager::Get()->sceneArray[i].TOTAL_VERTICES);
+		progress[i] = ((float)(SceneManager::Get()->sceneArray[i].LOADED_VERTICES))/ ((float)(SceneManager::Get()->sceneArray[i].TOTAL_VERTICES));
+		if (std::isnan(progress[i]))
+			progress[i] = 0;
+
+		ImGui::SliderFloat((name+id+loading).c_str(), &progress[i], 0, 1);
 	}
 	
 

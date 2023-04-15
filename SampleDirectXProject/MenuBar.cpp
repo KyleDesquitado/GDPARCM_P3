@@ -91,25 +91,25 @@ void MenuBar::DrawUI()
                 {
                     GameObjectManager::Get()->CreateCapsule();
                 }
-                if (ImGui::MenuItem("Cylinder"))
+                if (ImGui::MenuItem("Scene 1"))
                 {
-                    GameObjectManager::Get()->CreateCylinder();
+                    GameObjectManager::Get()->CreateScene1ObjSet();
                 }
-                if (ImGui::MenuItem("Teapot"))
+                if (ImGui::MenuItem("Scene 2"))
                 {
-                    GameObjectManager::Get()->CreateTeapot();
+                    GameObjectManager::Get()->CreateScene2ObjSet();
                 }
-                if (ImGui::MenuItem("Bunny"))
+                if (ImGui::MenuItem("Scene 3"))
                 {
-                    GameObjectManager::Get()->CreateBunny();
+                    GameObjectManager::Get()->CreateScene3ObjSet();
                 }
-                if (ImGui::MenuItem("Armadillo"))
+                if (ImGui::MenuItem("Scene 4"))
                 {
-                    GameObjectManager::Get()->CreateArmadillo();
+                    GameObjectManager::Get()->CreateScene4ObjSet();
                 }
-                if (ImGui::MenuItem("Lucy"))
+                if (ImGui::MenuItem("Scene 5"))
                 {
-                    GameObjectManager::Get()->CreateArmadillo();
+                    GameObjectManager::Get()->CreateScene5ObjSet();
                 }
                 if (ImGui::MenuItem("LoadAllScene"))
                 {

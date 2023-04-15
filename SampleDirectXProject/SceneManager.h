@@ -44,6 +44,7 @@ public:
         bool isLoaded = false;
         bool isUnloading = false;
         std::vector<ModelInfoPair> modelList;
+        //std::unordered_map<ModelInfoPair, Mesh*> meshMap;
 	};
 
 

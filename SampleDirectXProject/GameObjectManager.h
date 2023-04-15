@@ -44,6 +44,11 @@ public:
 	void ApplyEditorAction(class EditorAction* action);
 
 public:
+	void CreateScene1ObjSet();
+	void CreateScene2ObjSet();
+	void CreateScene3ObjSet();
+	void CreateScene4ObjSet();
+	void CreateScene5ObjSet();
 	void CreateObjectFromFile(std::string name, PrimitiveType type, SimpleMath::Vector3 position, SimpleMath::Vector3 rotation, SimpleMath::Vector3 scale, bool hasPhysics);
 
 public:
