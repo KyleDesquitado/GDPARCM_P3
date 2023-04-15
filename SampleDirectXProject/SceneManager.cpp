@@ -87,7 +87,7 @@ void SceneManager::LoadAllScenes()
 
     for (int i = 0; i < 5; i++)
     {
-        instance->initializeScene((SceneID)i);
+        instance->LoadScene((SceneID)i);
         // create mesh from the path of the models [FIRST]
         for (int j = 0; j < sceneArray[i].modelList.size(); j++)
         {
@@ -114,7 +114,7 @@ void SceneManager::UpdateSceneState(SceneID scene)
 	}
 }
 
-void SceneManager::initializeScene(SceneID scene)
+void SceneManager::LoadScene(SceneID scene)
 {
     switch (scene)
     {
@@ -126,7 +126,7 @@ void SceneManager::initializeScene(SceneID scene)
     }
 }
 
-void SceneManager::unloadScene(SceneID scene)
+void SceneManager::UnloadScene(SceneID scene)
 {
     switch (scene)
     {

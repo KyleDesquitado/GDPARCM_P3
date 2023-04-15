@@ -63,15 +63,15 @@ UIManager::UIManager(HWND hwnd)
 
 	ObjectProperty* objProp = new ObjectProperty();
 	this->uiTable[uiNames.OBJECT_PROPERTY] = objProp;
-	this->uiList.push_back(objProp);
+	//this->uiList.push_back(objProp);
 
 	ObjectParentingScreen* objParenting = new ObjectParentingScreen();
 	this->uiTable[uiNames.OBJECT_PARENTING] = objParenting;
-	this->uiList.push_back(objParenting);
+	//this->uiList.push_back(objParenting);
 
 	Hierarchy* hierarchy = new Hierarchy();
 	this->uiTable[uiNames.HIERARCHY] = hierarchy;
-	this->uiList.push_back(hierarchy);
+	//this->uiList.push_back(hierarchy);
 
 	CreditsScreen* credits = new CreditsScreen();
 	this->uiTable[uiNames.CREDITS_SCREEN] = credits;
@@ -79,11 +79,11 @@ UIManager::UIManager(HWND hwnd)
 
 	PlaybackScreen* playback = new PlaybackScreen();
 	this->uiTable[uiNames.PLAYBACK] = playback;
-	this->uiList.push_back(playback);
+	//this->uiList.push_back(playback);
 
 	ActionScreen* action = new ActionScreen();
 	this->uiTable[uiNames.ACTION] = action;
-	this->uiList.push_back(action);
+	//this->uiList.push_back(action);
 
 	LoadingScreen* loading = new LoadingScreen();
 	this->uiTable[uiNames.LOADING_MENU] = loading;

@@ -53,8 +53,8 @@ public:
 
     void LoadAllScenes();
     void UpdateSceneState(SceneID scene);
-    void initializeScene(SceneID scene);
-    void unloadScene(SceneID scene);
+    void LoadScene(SceneID scene);
+    void UnloadScene(SceneID scene);
     Scene getScene(SceneID scene);
 
 public:
